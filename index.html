@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PHK Holdings</title>
+
+  <!-- 캐시 확인용 버전 -->
+  <title>PHK Holdings — MAIN (v1200)</title>
 
   <style>
     :root{
@@ -18,43 +20,52 @@
       --cyan:#2DE2E6;
       --yellow:#FFD24D;
       --red:#E60000;
+      --shadow: rgba(0,0,0,.35);
+      --glass: rgba(255,255,255,.06);
+      --glass2: rgba(255,255,255,.03);
     }
-    *{box-sizing:border-box}
+
+    *{ box-sizing:border-box; }
+
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple SD Gothic Neo","Noto Sans KR", sans-serif;
-      background: radial-gradient(1100px 700px at 50% 0%, #0B1B44 0%, var(--bg2) 52%, var(--bg1) 100%);
-      color:var(--text);
-      line-height:1.75;
+      background:
+        radial-gradient(1100px 700px at 50% 0%, #0B1B44 0%, var(--bg2) 52%, var(--bg1) 100%);
+      color: var(--text);
+      line-height: 1.75;
     }
-    a{color:inherit}
+
+    a{ color:inherit; }
+
     .wrap{
       max-width: 1080px;
-      margin:0 auto;
-      padding: 26px 18px 90px;
+      margin: 0 auto;
+      padding: 26px 18px 140px;
     }
 
     /* HERO */
     .hero{
-      border:1px solid var(--line);
+      border: 1px solid var(--line);
       border-radius: 20px;
       padding: 34px 22px;
       background: linear-gradient(180deg, rgba(15,24,44,.92), rgba(11,19,38,.90));
-      box-shadow: 0 18px 50px rgba(0,0,0,.35);
-      position:relative;
-      overflow:hidden;
+      box-shadow: 0 18px 50px var(--shadow);
+      position: relative;
+      overflow: hidden;
     }
+
     .hero:before{
       content:"";
       position:absolute;
       inset:-160px -160px auto -160px;
-      height:320px;
+      height: 320px;
       background:
         radial-gradient(circle at 30% 50%, rgba(89,199,255,.22), transparent 58%),
         radial-gradient(circle at 70% 40%, rgba(45,226,230,.18), transparent 60%);
-      filter: blur(2px);
       pointer-events:none;
     }
+
     .brand{
       display:flex;
       align-items:center;
@@ -62,325 +73,554 @@
       position:relative;
       z-index:1;
     }
+
     .logo{
-      width:46px;height:46px;border-radius:14px;
+      width:46px;
+      height:46px;
+      border-radius:14px;
       background: linear-gradient(135deg, var(--blue), var(--cyan));
       color:#071024;
-      font-weight:900;
-      display:flex;align-items:center;justify-content:center;
+      font-weight: 900;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       letter-spacing:.6px;
       box-shadow: 0 12px 28px rgba(89,199,255,.22);
+      user-select:none;
     }
-    .brand h1{
+
+    h1{
       margin:0;
-      font-size: 30px;
+      font-size: 32px;
       letter-spacing:.4px;
     }
-    .brand p{
+
+    .sub{
       margin:6px 0 0;
       color:var(--muted);
       font-size: 13px;
     }
+
     .hero h2{
-      margin:18px 0 0;
+      margin: 18px 0 0;
       font-size: 20px;
       position:relative;
       z-index:1;
     }
-    .hero .lead{
-      margin:10px 0 0;
-      color:var(--muted);
+
+    .lead{
+      margin: 10px 0 0;
+      color: var(--muted);
       max-width: 980px;
       position:relative;
       z-index:1;
     }
+
     .pill{
       display:inline-block;
       margin-top: 14px;
       padding: 7px 10px;
       border-radius: 999px;
-      border:1px solid rgba(255,210,77,.35);
+      border: 1px solid rgba(255,210,77,.35);
       background: rgba(255,210,77,.08);
-      color:#FFE7A0;
+      color: #FFE7A0;
       font-size: 12px;
       position:relative;
       z-index:1;
     }
 
-    /* CTA buttons */
-    .row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-top: 18px;
-      position:relative;
-      z-index:1;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 12px 14px;
-      border-radius: 12px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      text-decoration:none;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      user-select:none;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.07);
-      border-color: rgba(89,199,255,.55);
-    }
-    .btn strong{font-size:14px}
-    .btn span{font-size:12px;color:var(--muted)}
-    .icon{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center}
-
-    /* Cards */
+    /* Cards / Layout */
     .grid{
       display:grid;
       grid-template-columns: 1fr;
       gap: 16px;
       margin-top: 16px;
     }
+
     @media (min-width: 920px){
-      .grid{grid-template-columns: 1.1fr .9fr;}
+      .grid{
+        grid-template-columns: 1.1fr .9fr;
+      }
     }
+
     .card{
-      border:1px solid var(--line);
+      border: 1px solid var(--line);
       background: linear-gradient(180deg, rgba(15,24,44,.92), rgba(11,19,38,.90));
       border-radius: 20px;
       padding: 22px 20px;
       box-shadow: 0 12px 35px rgba(0,0,0,.30);
     }
-    .card h3{margin:0 0 10px;color:#D7ECFF;font-size:18px}
-    .card p{margin:10px 0;color:var(--muted)}
-    .hl{color:var(--yellow);font-weight:800}
-    .list{margin:12px 0 0;padding:0 0 0 18px;color:var(--muted)}
-    .list li{margin:9px 0}
+
+    .card h3{
+      margin:0 0 10px;
+      color:#D7ECFF;
+      font-size: 18px;
+      letter-spacing:.2px;
+    }
+
+    .card p{
+      margin: 10px 0;
+      color: var(--muted);
+    }
+
+    .hl{
+      color: var(--yellow);
+      font-weight: 800;
+    }
+
+    .list{
+      margin: 12px 0 0;
+      padding: 0 0 0 18px;
+      color: var(--muted);
+    }
+
+    .list li{
+      margin: 9px 0;
+    }
+
     .hr{
-      height:1px;border:0;
+      height:1px;
+      border:0;
       background: linear-gradient(90deg, transparent, rgba(89,199,255,.35), transparent);
       margin: 16px 0;
     }
 
-    /* Sections */
-    .sectionTitle{
-      margin: 26px 0 10px;
-      font-size: 20px;
-      color:#D7ECFF;
-    }
-
-    /* FAQ */
     details{
-      border:1px solid rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.08);
       background: rgba(255,255,255,.03);
       border-radius: 14px;
       padding: 12px 14px;
       margin-top: 10px;
     }
+
     summary{
       cursor:pointer;
       font-weight: 800;
       color:#DDEBFF;
     }
-    details p{margin:10px 0 0;color:var(--muted)}
 
-    /* Footer */
+    details p{
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    /* ===============================
+       Right toggle button + panel
+       기본 숨김 / 버튼 눌러야 열림
+    =============================== */
+
+    .fab{
+      position: fixed;
+      right: 16px;
+      bottom: 18px;
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(89,199,255,.24), rgba(255,255,255,.06));
+      box-shadow: 0 18px 40px rgba(0,0,0,.45);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      z-index: 9999;
+      user-select:none;
+      backdrop-filter: blur(6px);
+    }
+
+    .fab:hover{
+      border-color: rgba(89,199,255,.55);
+    }
+
+    .fab svg{
+      width: 26px;
+      height: 26px;
+      fill: none;
+      stroke: #DFF4FF;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* overlay */
+    .overlay{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 9997;
+      display:none;
+    }
+
+    .overlay.on{
+      display:block;
+    }
+
+    /* panel */
+    .sidePanel{
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(360px, 92vw);
+      height: 100%;
+      background: linear-gradient(180deg, rgba(15,24,44,.96), rgba(11,19,38,.95));
+      border-left: 1px solid rgba(255,255,255,.10);
+      box-shadow: -20px 0 60px rgba(0,0,0,.55);
+      transform: translateX(110%);
+      transition: transform .18s ease;
+      z-index: 9998;
+      padding: 18px 16px 20px;
+      overflow:auto;
+    }
+
+    .sidePanel.on{
+      transform: translateX(0);
+    }
+
+    .panelTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+    }
+
+    .panelTitle{
+      font-weight: 900;
+      letter-spacing: .2px;
+      color: #D7ECFF;
+    }
+
+    .closeBtn{
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      user-select:none;
+    }
+
+    .closeBtn:hover{
+      border-color: rgba(89,199,255,.55);
+    }
+
+    .closeBtn svg{
+      width: 22px;
+      height: 22px;
+      stroke: #DFF4FF;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .panelCard{
+      margin-top: 12px;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      padding: 14px 12px;
+      background: rgba(255,255,255,.04);
+    }
+
+    .panelCard h4{
+      margin: 0 0 10px;
+      font-size: 14px;
+      color: #DDEBFF;
+      letter-spacing:.2px;
+    }
+
+    .select{
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.25);
+      color: #EAF0FF;
+      padding: 12px 12px;
+      font-size: 14px;
+      outline:none;
+    }
+
+    .btnRow{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top: 10px;
+    }
+
+    .panelBtn{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      text-decoration:none;
+      cursor:pointer;
+      user-select:none;
+    }
+
+    .panelBtn:hover{
+      border-color: rgba(89,199,255,.55);
+      background: rgba(255,255,255,.07);
+    }
+
+    .panelBtn strong{ font-size: 14px; }
+    .panelBtn span{ font-size: 12px; color: var(--muted); }
+
+    .iconBox{
+      width: 26px;
+      height: 26px;
+      border-radius: 10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex: 0 0 auto;
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    .iconBox svg{
+      width: 18px;
+      height: 18px;
+      display:block;
+    }
+
+    /* Embedded video card in main content (optional) */
+    .embedWrap{
+      margin-top: 14px;
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.25);
+    }
+
+    iframe{
+      width:100%;
+      aspect-ratio: 16/9;
+      border:0;
+      display:block;
+    }
+
+    .note{
+      font-size: 12px;
+      color: #9BB0DD;
+      margin-top: 10px;
+    }
+
     .footer{
       margin-top: 22px;
       text-align:center;
       color:#93A3C8;
       font-size: 12px;
     }
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;}
   </style>
 </head>
 
 <body>
   <div class="wrap">
 
-    <!-- HERO -->
+    <!-- =========================
+         HERO
+    ========================= -->
     <section class="hero">
       <div class="brand">
         <div class="logo">PHK</div>
         <div>
-          <h1>PHK Holdings</h1>
-          <p>Public Human Kernel Holdings · Human-Centered Architecture</p>
+          <h1 id="t_brand">PHK Holdings</h1>
+          <div class="sub" id="t_sub">Public Human Kernel Holdings · Human-Centered Architecture</div>
         </div>
       </div>
 
-      <h2>사람 중심 기술 철학 + 공공 금융 구조 + 참여 기반 보상 설계를 통합하는 지주 구조</h2>
-      <p class="lead">
-        PHK Holdings는 “한 번 반짝”하는 프로젝트가 아니라,
-        <span class="hl">설명 가능한 구조</span>로 오래 가는 시스템을 만듭니다.
+      <h2 id="t_headline">
+        사람 중심 기술 철학 + 공공 금융 구조 + 참여 기반 보상 설계를 통합하는 지주 구조
+      </h2>
+
+      <p class="lead" id="t_lead">
+        PHK Holdings는 단일 서비스가 아닙니다.
+        “한 번 반짝”하는 프로젝트가 아니라,
+        설명 가능한 구조로 오래 가는 시스템을 만듭니다.
         기술이 사람을 대체하는 방향이 아니라,
         사람을 보호하고 확장하는 방향으로 작동하도록,
-        금융·기술·참여 구조를 <span class="hl">한 번에</span> 설계합니다.
+        금융·기술·참여 구조를 한 번에 설계합니다.
       </p>
 
-      <div class="pill">고정 원칙: 설명 없는 변경 없음 · 참여자 신뢰 훼손 없음 · 모든 변경은 공개 공지</div>
-
-      <!-- YouTube (1개만) -->
-      <div class="row">
-        <a class="btn" href="https://www.youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener">
-          <span class="icon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M21.7 7.5c.2.8.3 2 .3 3.8v1.4c0 1.8-.1 3-.3 3.8-.2.9-.8 1.6-1.7 1.8-1.5.4-7 .4-7.7.4s-6.2 0-7.7-.4c-.9-.2-1.5-.9-1.7-1.8C3.1 15.7 3 14.5 3 12.7v-1.4c0-1.8.1-3 .3-3.8.2-.9.8-1.6 1.7-1.8C6.5 5.3 12 5.3 12.7 5.3s6.2 0 7.7.4c.9.2 1.5.9 1.7 1.8Z" fill="#E60000"/>
-              <path d="M11 10v4.8l4.2-2.4L11 10Z" fill="white"/>
-            </svg>
-          </span>
-          <div>
-            <strong>PHK Holdings 공식 유튜브</strong><br/>
-            <span>비전 · 구조 · 로드맵 · 공지</span>
-          </div>
-        </a>
+      <div class="pill" id="t_pill">
+        고정 원칙: 설명 없는 변경 없음 · 신뢰 훼손 없음 · 모든 변경은 공개 공지
       </div>
     </section>
 
-    <!-- SECTION 1 -->
+    <!-- =========================
+         MAIN CONTENT
+    ========================= -->
     <div class="grid">
+
       <section class="card">
-        <h3>PHK Holdings란 무엇인가</h3>
-        <p>
-          PHK Holdings는 단순한 회사 소개 페이지가 아닙니다.
-          “사람이 살아남는 구조”를 먼저 설계하고, 그 위에 기술과 금융을 얹는
-          <span class="hl">지주형 설계 프레임</span>입니다.
+        <h3 id="t_what_title">PHK Holdings란 무엇인가</h3>
+
+        <p id="t_what_p1">
+          PHK Holdings는 “은행 간판”이 아닙니다.
+          인간 중심 기술 철학을 기반으로
+          금융·기술·참여 구조를 통합 설계하는
+          지주형 플랫폼 그룹입니다.
         </p>
-        <p>
+
+        <p id="t_what_p2">
           우리는 단기적 투기, 과장된 약속, 설명 없는 백서로 신뢰를 얻지 않습니다.
           대신, 누구든 읽으면 이해되는 문장으로 원칙을 고정하고,
           시스템이 흔들릴 때도 방향을 잃지 않도록
-          <span class="hl">운영의 뼈대</span>를 먼저 세웁니다.
+          운영의 뼈대를 먼저 세웁니다.
         </p>
-        <ul class="list">
-          <li><b>인간 중심:</b> 기술은 인간을 대체하기 위한 것이 아니라, 인간의 생존·참여·존엄을 보호해야 합니다.</li>
-          <li><b>실제 사용:</b> “보여주기용”이 아니라, 실제로 쓰이며 흐름이 발생하는 구조를 우선합니다.</li>
-          <li><b>신뢰 연속성:</b> 약속한 원칙을 쉽게 바꾸지 않습니다. 바뀌면 반드시 공개 설명을 동반합니다.</li>
-          <li><b>확장성:</b> 글로벌 참여를 고려해 구조와 문장을 설계합니다. (추후 다국어 확장 가능)</li>
+
+        <ul class="list" id="t_what_list">
+          <li><b class="hl">인간 중심</b> : 기술은 인간의 생존·참여·존엄을 보호해야 합니다.</li>
+          <li><b class="hl">실제 사용</b> : 보여주기용이 아니라 실제 흐름이 발생하는 구조를 우선합니다.</li>
+          <li><b class="hl">신뢰 연속성</b> : 약속한 원칙을 쉽게 바꾸지 않습니다. 변경은 공개 설명을 동반합니다.</li>
+          <li><b class="hl">확장성</b> : 글로벌 참여를 고려해 구조와 문장을 설계합니다.</li>
         </ul>
+
+        <hr class="hr"/>
+
+        <p id="t_what_p3">
+          PHK Holdings는 “말의 플랫폼”이 아니라 “구조의 플랫폼”입니다.
+          구조가 있으면 흔들려도 다시 일어설 수 있습니다.
+          원칙이 있으면 오해가 생겨도 정리할 수 있습니다.
+          책임 문장이 있으면 참여자에게 설명할 수 있습니다.
+        </p>
+
+        <p id="t_what_p4">
+          그래서 PHK Holdings는
+          가장 먼저 ‘정체성(메인)’을 고정하고,
+          그 다음 ‘원칙’을 고정하며,
+          마지막으로 ‘기능’을 붙입니다.
+          순서를 거꾸로 하지 않습니다.
+        </p>
       </section>
 
       <aside class="card">
-        <h3>PHK Holdings가 “지주”인 이유</h3>
-        <p>
-          단일 플랫폼은 쉽게 흔들립니다.
+        <h3 id="t_why_title">왜 ‘Holdings(지주)’인가</h3>
+
+        <p id="t_why_p1">
+          단일 서비스는 쉽게 흔들립니다.
           구조가 분산되면 참여자는 혼란을 느끼고,
           신뢰는 빠르게 무너집니다.
         </p>
-        <p>
+
+        <p id="t_why_p2">
           PHK Holdings는 최상위에서
-          <span class="hl">원칙·정책·공개 공지·책임 문장</span>을 고정하고,
-          그 아래의 기능 단위(결제, 보상, 기본소득 등)가
-          같은 철학으로 움직이게 합니다.
+          원칙·정책·공개 공지·책임 문장을 고정하고,
+          아래의 기능 단위가 같은 철학으로 움직이게 합니다.
         </p>
+
         <hr class="hr"/>
-        <p>
-          요약하면, PHK Holdings는
-          “여러 기능이 제각각 움직이는 시스템”이 아니라,
+
+        <p id="t_why_p3">
+          요약하면 PHK Holdings는
+          “제각각 움직이는 시스템”이 아니라
           “하나의 철학으로 통합되는 시스템”을 만드는 상위 구조입니다.
         </p>
+
+        <p class="note" id="t_why_note">
+          ※ 오른쪽 아래 버튼을 눌러서 유튜브/틱톡/언어 선택을 열 수 있습니다.
+        </p>
       </aside>
+
     </div>
 
-    <!-- SECTION 2 -->
     <section class="card">
-      <h3>우리가 말하는 ‘기본소득’은 구호가 아니라 구조입니다</h3>
-      <p>
-        기본소득은 말로만 하면 누구나 합니다.
-        하지만 지속 가능한 재원·명확한 기준·단계적 설계 없이
-        기본소득을 말하는 순간, 그것은 약속이 아니라 광고가 됩니다.
-      </p>
-      <p>
-        PHK Holdings는 기본소득을
-        <span class="hl">장기 목표</span>로 두되,
-        “가능하게 만드는 조건”을 먼저 제시합니다.
-        즉, <b>어떤 흐름이 발생해야 기본소득이 가능한지</b>를 구조로 설명합니다.
-      </p>
+      <h3 id="t_principles_title">운영 원칙 (고정 선언)</h3>
 
-      <div class="sectionTitle">기본소득이 가능해지는 4가지 조건</div>
-      <ul class="list">
-        <li><b>사용(Use):</b> 실제 결제·서비스 이용이 발생해야 합니다.</li>
-        <li><b>참여(Participation):</b> 참여 기록과 기여가 누적되어야 합니다.</li>
-        <li><b>보상(Reward):</b> 기여 기반 분배 기준이 고정되어야 합니다.</li>
-        <li><b>지속성(Sustainability):</b> 단기 이벤트가 아니라, 반복 가능한 구조여야 합니다.</li>
-      </ul>
-    </section>
-
-    <!-- SECTION 3 -->
-    <section class="card">
-      <h3>운영 원칙 (고정 선언)</h3>
-      <p class="mono">
+      <p class="mono" id="t_principles_mono">
         1) 설명 없는 변경은 하지 않습니다.<br/>
         2) 참여자의 신뢰를 훼손하는 선택은 하지 않습니다.<br/>
         3) 모든 구조 변경은 공개 공지로만 진행됩니다.<br/>
-        4) 운영 기준은 문서로 남기고, 누구든 확인 가능해야 합니다.
+        4) 운영 기준은 문서로 남기고, 누구든 확인 가능해야 합니다.<br/>
+        5) “누가 봐도 이해되는 문장”을 최우선으로 합니다.
       </p>
-      <p>
-        이 원칙은 “홍보 문구”가 아니라
-        앞으로 PHK Holdings가 흔들릴 때에도 붙잡아야 하는
-        <span class="hl">핵심 안전장치</span>입니다.
+
+      <p id="t_principles_p1">
+        PHK Holdings는 빠른 말보다
+        오래 남는 문장을 선택합니다.
+        왜냐하면 신뢰는 ‘속도’가 아니라 ‘연속성’으로 만들어지기 때문입니다.
+      </p>
+
+      <p id="t_principles_p2">
+        이 원칙은 홍보 문구가 아닙니다.
+        PHK Holdings가 흔들릴 때에도 붙잡아야 하는
+        핵심 안전장치입니다.
       </p>
     </section>
 
-    <!-- SECTION 4 -->
     <section class="card">
-      <h3>로드맵 (설득용, 현실형)</h3>
-      <p>
+      <h3 id="t_roadmap_title">로드맵 (현실형)</h3>
+
+      <p id="t_roadmap_p1">
         PHK Holdings는 “한 번에 완성”을 말하지 않습니다.
-        대신 단계별로 공개하고, 검증하고, 쌓아갑니다.
+        단계별로 공개하고, 검증하고, 쌓아갑니다.
       </p>
-      <ul class="list">
-        <li><b>Step 1:</b> 메인 정체성 확정(지주 구조) + 고정 원칙 문서화 + 공식 채널 공지 체계</li>
-        <li><b>Step 2:</b> 핵심 개념(참여·보상·기본소득)을 누구나 이해할 수 있게 설명 자료로 공개</li>
-        <li><b>Step 3:</b> 실제 사용 흐름(결제/참여/보상)이 발생하는 구조 설계 및 테스트</li>
-        <li><b>Step 4:</b> 글로벌 참여 확장(언어/지역/파트너) 및 운영 기준 고도화</li>
+
+      <ul class="list" id="t_roadmap_list">
+        <li><b class="hl">Step 1</b> : 메인 정체성 확정(지주 구조) + 고정 원칙 문서화 + 공식 채널 공지 체계</li>
+        <li><b class="hl">Step 2</b> : 핵심 개념(참여·보상·기본소득)을 누구나 이해할 수 있게 설명 자료로 공개</li>
+        <li><b class="hl">Step 3</b> : 실제 사용 흐름(결제/참여/보상)이 발생하는 구조 설계 및 테스트</li>
+        <li><b class="hl">Step 4</b> : 글로벌 참여 확장(언어/지역/파트너) 및 운영 기준 고도화</li>
+        <li><b class="hl">Step 5</b> : 연속 공지 + 반복 개선 + 참여자 신뢰의 누적</li>
       </ul>
-      <p>
+
+      <p id="t_roadmap_p2">
         중요한 것은 “빠르게 크게”가 아니라
-        <span class="hl">끊기지 않는 신뢰</span>입니다.
+        끊기지 않는 신뢰입니다.
       </p>
     </section>
 
-    <!-- SECTION 5 -->
     <section class="card">
-      <h3>FAQ (자주 묻는 질문)</h3>
+      <h3 id="t_faq_title">FAQ</h3>
 
       <details>
-        <summary>Q1. PHK Holdings는 금융기관(은행)입니까?</summary>
-        <p>
-          PHK Holdings는 “은행 간판”이 아닙니다.
-          인간 중심 기술 철학을 기반으로
-          금융·참여·보상 구조를 설계하고 통합하는
-          지주형 구조입니다.
+        <summary id="t_faq_q1">Q1. PHK Holdings는 금융기관(은행)입니까?</summary>
+        <p id="t_faq_a1">
+          아닙니다.
+          PHK Holdings는 인간 중심 철학을 기반으로
+          금융·기술·참여 구조를 통합 설계하는 지주형 구조입니다.
+          “은행”이라는 오해를 줄이기 위해
+          메인 정체성은 ‘Holdings’로 고정합니다.
         </p>
       </details>
 
       <details>
-        <summary>Q2. 왜 이렇게 ‘원칙’과 ‘설명’을 강조합니까?</summary>
-        <p>
-          시스템이 커질수록 “말”이 아니라 “기준”이 필요합니다.
+        <summary id="t_faq_q2">Q2. 왜 원칙과 공지를 강조합니까?</summary>
+        <p id="t_faq_a2">
           참여자가 늘어나면 오해도 늘어납니다.
-          PHK Holdings는 그 오해를 줄이기 위해
-          원칙을 먼저 고정합니다.
+          오해는 신뢰를 무너뜨립니다.
+          PHK Holdings는 오해를 줄이기 위해
+          원칙을 먼저 고정하고,
+          모든 변경을 공개합니다.
         </p>
       </details>
 
       <details>
-        <summary>Q3. 기본소득은 언제 시작됩니까?</summary>
-        <p>
-          시점을 광고하지 않습니다.
-          대신 기본소득이 가능해지는 조건(사용·참여·보상·지속성)을 먼저 충족시키는 것이 순서입니다.
-          조건이 갖춰질수록 단계적으로 설계가 공개됩니다.
+        <summary id="t_faq_q3">Q3. 유튜브/틱톡은 왜 따로 넣나요?</summary>
+        <p id="t_faq_a3">
+          핵심은 “공식 채널에서만 공지한다”는 질서입니다.
+          공지는 흩어지면 혼란이 생깁니다.
+          그래서 공식 채널을 고정하고,
+          참여자가 어디서든 동일한 정보를 받도록 만듭니다.
         </p>
       </details>
 
       <details>
-        <summary>Q4. 앞으로 무엇을 보면 됩니까?</summary>
-        <p>
-          공식 유튜브에서 비전·구조·로드맵·공지 순서로 공개합니다.
-          “짧은 영상”보다 “설명 책임을 지는 내용”을 우선합니다.
+        <summary id="t_faq_q4">Q4. 언어가 왜 이렇게 많습니까?</summary>
+        <p id="t_faq_a4">
+          글로벌 참여자는 ‘한 문장’이 필요합니다.
+          언어가 다르면 오해가 커집니다.
+          그래서 핵심 문장을 12개 언어로 우선 제공하고,
+          이후 확장합니다.
         </p>
       </details>
     </section>
@@ -391,5 +631,1498 @@
     </div>
 
   </div>
-</body>
-</html>
+
+  <!-- =========================
+       Overlay + Side Panel
+       (기본 숨김)
+  ========================= -->
+  <div class="overlay" id="overlay"></div>
+
+  <aside class="sidePanel" id="sidePanel" aria-hidden="true">
+    <div class="panelTop">
+      <div class="panelTitle" id="t_panel_title">Quick Menu</div>
+      <div class="closeBtn" id="closeBtn" aria-label="close">
+        <svg viewBox="0 0 24 24">
+          <path d="M6 6L18 18"></path>
+          <path d="M18 6L6 18"></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Language select -->
+    <div class="panelCard">
+      <h4 id="t_lang_title">Language (12)</h4>
+      <select class="select" id="langSelect">
+        <option value="ko">한국어 (Korean)</option>
+        <option value="en">English</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="pt">Português</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="id">Bahasa Indonesia</option>
+      </select>
+      <div class="note" id="t_lang_note">
+        ※ 언어는 즉시 적용됩니다. (모바일 캐시 문제 시 주소 끝에 ?v=숫자)
+      </div>
+    </div>
+
+    <!-- YouTube 1 -->
+    <div class="panelCard">
+      <h4 id="t_media_title">Official Media</h4>
+
+      <div class="btnRow">
+        <a class="panelBtn" id="btnYouTube" href="https://www.youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener">
+          <div class="iconBox" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M21.7 7.5c.2.8.3 2 .3 3.8v1.4c0 1.8-.1 3-.3 3.8-.2.9-.8 1.6-1.7 1.8-1.5.4-7 .4-7.7.4s-6.2 0-7.7-.4c-.9-.2-1.5-.9-1.7-1.8C3.1 15.7 3 14.5 3 12.7v-1.4c0-1.8.1-3 .3-3.8.2-.9.8-1.6 1.7-1.8C6.5 5.3 12 5.3 12.7 5.3s6.2 0 7.7.4c.9.2 1.5.9 1.7 1.8Z" fill="#E60000"/>
+              <path d="M11 10v4.8l4.2-2.4L11 10Z" fill="white"/>
+            </svg>
+          </div>
+          <div>
+            <strong id="t_yt_btn">YouTube (Official)</strong><br/>
+            <span id="t_yt_sub">Vision · Structure · Roadmap · Notice</span>
+          </div>
+        </a>
+
+        <!-- YouTube embed (1개) -->
+        <div class="embedWrap">
+          <iframe
+            id="ytFrame"
+            src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+            title="PHK Holdings Official YouTube"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+
+        <div class="note" id="t_yt_note">
+          ※ YOUR_CHANNEL 과 YOUR_VIDEO_ID만 바꾸면 됩니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- TikTok 1 -->
+    <div class="panelCard">
+      <h4 id="t_tk_title">TikTok</h4>
+
+      <div class="btnRow">
+        <a class="panelBtn" id="btnTikTok" href="https://www.tiktok.com/@YOUR_TIKTOK" target="_blank" rel="noopener">
+          <div class="iconBox" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M14 3c.4 2.5 2.2 4.4 4.6 4.8V11c-1.9-.1-3.3-.8-4.6-1.8v6.6c0 3.1-2.5 5.7-5.7 5.7S2.6 18.9 2.6 15.8c0-3.1 2.5-5.7 5.7-5.7.5 0 1 .1 1.5.2v3.1c-.5-.2-1-.4-1.5-.4-1.4 0-2.6 1.2-2.6 2.7 0 1.4 1.2 2.7 2.6 2.7 1.6 0 2.9-1.1 2.9-3.3V3h2.8z" fill="#EAF0FF"/>
+              <path d="M18.6 7.8V11c-1.9-.1-3.3-.8-4.6-1.8v-2c1.2 1 2.6 1.6 4.6 1.6z" fill="#59C7FF" opacity=".65"/>
+            </svg>
+          </div>
+          <div>
+            <strong id="t_tk_btn">TikTok (Official)</strong><br/>
+            <span id="t_tk_sub">Short updates · Public messages</span>
+          </div>
+        </a>
+
+        <div class="note" id="t_tk_note">
+          ※ YOUR_TIKTOK만 바꾸면 됩니다. (틱톡은 모바일에서 임베드가 제한될 수 있어 링크 방식이 가장 안정적입니다)
+        </div>
+      </div>
+    </div>
+
+    <div class="panelCard">
+      <h4 id="t_tip_title">Tip</h4>
+      <div class="note" id="t_tip">
+        주소 끝에 <span class="mono">?v=숫자</span> 를 붙이면 캐시를 뚫고 최신이 뜹니다.<br/>
+        예: <span class="mono">https://ljw2358.github.io/?v=1200</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Floating Action Button -->
+  <div class="fab" id="fab" aria-label="open menu">
+    <svg viewBox="0 0 24 24">
+      <path d="M4 7h16"></path>
+      <path d="M4 12h16"></path>
+      <path d="M4 17h16"></path>
+    </svg>
+  </div>
+
+  <!-- =========================
+       12-Language i18n
+       (길게, 풍성하게)
+  ========================= -->
+  <script>
+    (function(){
+      "use strict";
+
+      // =========================
+      // Elements
+      // =========================
+      const overlay = document.getElementById("overlay");
+      const panel = document.getElementById("sidePanel");
+      const fab = document.getElementById("fab");
+      const closeBtn = document.getElementById("closeBtn");
+      const langSel = document.getElementById("langSelect");
+
+      // =========================
+      // Panel open/close
+      // =========================
+      function openPanel(){
+        panel.classList.add("on");
+        overlay.classList.add("on");
+        panel.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closePanel(){
+        panel.classList.remove("on");
+        overlay.classList.remove("on");
+        panel.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      fab.addEventListener("click", openPanel);
+      closeBtn.addEventListener("click", closePanel);
+      overlay.addEventListener("click", closePanel);
+
+      // Esc key closes
+      document.addEventListener("keydown", function(e){
+        if(e.key === "Escape"){
+          closePanel();
+        }
+      });
+
+      // =========================
+      // i18n dictionary (12)
+      // =========================
+      const I18N = {
+
+        // -------------------------------------------------------
+        // KO
+        // -------------------------------------------------------
+        ko: {
+          t_panel_title: "빠른 메뉴",
+          t_lang_title: "언어 선택 (12개)",
+          t_lang_note: "※ 언어는 즉시 적용됩니다. (모바일 캐시 문제 시 주소 끝에 ?v=숫자)",
+
+          t_media_title: "공식 채널",
+          t_yt_btn: "YouTube (공식)",
+          t_yt_sub: "비전 · 구조 · 로드맵 · 공지",
+          t_yt_note: "※ YOUR_CHANNEL 과 YOUR_VIDEO_ID만 바꾸면 됩니다.",
+
+          t_tk_title: "TikTok",
+          t_tk_btn: "TikTok (공식)",
+          t_tk_sub: "짧은 업데이트 · 공공 메시지",
+          t_tk_note: "※ YOUR_TIKTOK만 바꾸면 됩니다. (틱톡은 모바일에서 임베드가 제한될 수 있어 링크 방식이 가장 안정적입니다)",
+
+          t_tip_title: "팁",
+          t_tip: "주소 끝에 ?v=숫자를 붙이면 캐시를 뚫고 최신이 뜹니다.<br/>예: https://ljw2358.github.io/?v=1200",
+
+          t_brand: "PHK Holdings",
+          t_sub: "Public Human Kernel Holdings · Human-Centered Architecture",
+
+          t_headline: "사람 중심 기술 철학 + 공공 금융 구조 + 참여 기반 보상 설계를 통합하는 지주 구조",
+
+          t_lead:
+            "PHK Holdings는 단일 서비스가 아닙니다. " +
+            "“한 번 반짝”하는 프로젝트가 아니라, " +
+            "설명 가능한 구조로 오래 가는 시스템을 만듭니다. " +
+            "기술이 사람을 대체하는 방향이 아니라, " +
+            "사람을 보호하고 확장하는 방향으로 작동하도록, " +
+            "금융·기술·참여 구조를 한 번에 설계합니다.",
+
+          t_pill: "고정 원칙: 설명 없는 변경 없음 · 신뢰 훼손 없음 · 모든 변경은 공개 공지",
+
+          t_what_title: "PHK Holdings란 무엇인가",
+          t_what_p1:
+            "PHK Holdings는 “은행 간판”이 아닙니다. " +
+            "인간 중심 기술 철학을 기반으로 " +
+            "금융·기술·참여 구조를 통합 설계하는 " +
+            "지주형 플랫폼 그룹입니다.",
+
+          t_what_p2:
+            "우리는 단기적 투기, 과장된 약속, 설명 없는 백서로 신뢰를 얻지 않습니다. " +
+            "대신, 누구든 읽으면 이해되는 문장으로 원칙을 고정하고, " +
+            "시스템이 흔들릴 때도 방향을 잃지 않도록 " +
+            "운영의 뼈대를 먼저 세웁니다.",
+
+          t_what_list
+            
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- 캐시 확인용 -->
+  <title>PHK Holdings — MAIN (12 LANG) v1000</title>
+
+  <style>
+    :root{
+      --bg1:#060A12;
+      --bg2:#070C18;
+      --card1:#0F182C;
+      --card2:#0B1326;
+      --line:#1B2A49;
+      --text:#EAF0FF;
+      --muted:#B7C3E6;
+      --blue:#59C7FF;
+      --cyan:#2DE2E6;
+      --yellow:#FFD24D;
+      --red:#E60000;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --shadow2: 0 12px 35px rgba(0,0,0,.30);
+      --radius: 20px;
+      --radius2: 16px;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple SD Gothic Neo","Noto Sans KR", sans-serif;
+      background: radial-gradient(1100px 700px at 50% 0%, #0B1B44 0%, var(--bg2) 52%, var(--bg1) 100%);
+      color: var(--text);
+      line-height:1.75;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .wrap{
+      max-width: 1100px;
+      margin:0 auto;
+      padding: 22px 16px 120px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 10px 2px 16px;
+    }
+
+    .brandMini{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .logoMini{
+      width:36px;
+      height:36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color:#071024;
+      font-weight:900;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      letter-spacing:.6px;
+      box-shadow: 0 12px 28px rgba(89,199,255,.22);
+    }
+
+    .brandMiniTitle{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+
+    .brandMiniTitle strong{
+      font-size:14px;
+      letter-spacing:.2px;
+    }
+
+    .brandMiniTitle span{
+      font-size:12px;
+      color: var(--muted);
+    }
+
+    .langBox{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 10px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+    }
+
+    .langBox label{
+      font-size:12px;
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    .langBox select{
+      background: rgba(0,0,0,.35);
+      color: var(--text);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 12px;
+      padding: 8px 10px;
+      outline:none;
+      font-size: 13px;
+    }
+
+    .hero{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px 18px;
+      background: linear-gradient(180deg, rgba(15,24,44,.92), rgba(11,19,38,.90));
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-170px -170px auto -170px;
+      height:340px;
+      background:
+        radial-gradient(circle at 30% 50%, rgba(89,199,255,.22), transparent 58%),
+        radial-gradient(circle at 70% 40%, rgba(45,226,230,.18), transparent 60%);
+      pointer-events:none;
+    }
+
+    .heroHeader{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      position:relative;
+      z-index:1;
+    }
+
+    .logo{
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      color:#071024;
+      font-weight:900;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      letter-spacing:.6px;
+      box-shadow: 0 12px 28px rgba(89,199,255,.22);
+    }
+
+    .heroTitle{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+
+    .heroTitle h1{
+      margin:0;
+      font-size: 30px;
+      letter-spacing:.4px;
+    }
+
+    .heroTitle p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .pill{
+      display:inline-block;
+      margin-top: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,210,77,.35);
+      background: rgba(255,210,77,.08);
+      color:#FFE7A0;
+      font-size: 12px;
+      position:relative;
+      z-index:1;
+    }
+
+    .content{
+      margin-top: 14px;
+      position:relative;
+      z-index:1;
+    }
+
+    .lead{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hl{
+      color: var(--yellow);
+      font-weight:800;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    @media (min-width: 960px){
+      .grid{
+        grid-template-columns: 1.12fr .88fr;
+      }
+    }
+
+    .card{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(15,24,44,.92), rgba(11,19,38,.90));
+      border-radius: var(--radius);
+      padding: 20px 18px;
+      box-shadow: var(--shadow2);
+    }
+
+    .card h2{
+      margin:0 0 10px;
+      font-size: 18px;
+      color:#D7ECFF;
+    }
+
+    .card h3{
+      margin:18px 0 10px;
+      font-size: 16px;
+      color:#D7ECFF;
+    }
+
+    .card p{
+      margin: 10px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .list{
+      margin: 12px 0 0;
+      padding: 0 0 0 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .list li{
+      margin: 10px 0;
+    }
+
+    .hr{
+      height:1px;
+      border:0;
+      background: linear-gradient(90deg, transparent, rgba(89,199,255,.35), transparent);
+      margin: 16px 0;
+    }
+
+    details{
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-top: 10px;
+    }
+
+    summary{
+      cursor:pointer;
+      font-weight: 800;
+      color:#DDEBFF;
+    }
+
+    details p{
+      margin:10px 0 0;
+      color: var(--muted);
+    }
+
+    .footer{
+      margin-top: 22px;
+      text-align:center;
+      color:#93A3C8;
+      font-size: 12px;
+    }
+
+    .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    /* =========================
+       RIGHT PANEL (HIDDEN BY DEFAULT)
+       ========================= */
+
+    .floatingToggle{
+      position: fixed;
+      right: 14px;
+      bottom: 18px;
+      z-index: 9999;
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(15,24,44,.92);
+      box-shadow: 0 18px 50px rgba(0,0,0,.45);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      user-select:none;
+    }
+
+    .floatingToggle:hover{
+      border-color: rgba(89,199,255,.55);
+    }
+
+    .floatingToggle .dot{
+      width:10px;
+      height:10px;
+      border-radius: 999px;
+      background: var(--blue);
+      box-shadow: 0 0 0 6px rgba(89,199,255,.15);
+    }
+
+    .sidePanel{
+      position: fixed;
+      right: 14px;
+      bottom: 84px;
+      z-index: 9999;
+      width: min(340px, calc(100vw - 28px));
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(15,24,44,.96);
+      box-shadow: 0 18px 50px rgba(0,0,0,.50);
+      overflow: hidden;
+
+      /* ✅ 기본은 숨김 */
+      display: none;
+    }
+
+    .sidePanel.open{
+      display: block;
+    }
+
+    .panelHeader{
+      padding: 14px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+    }
+
+    .panelHeader strong{
+      font-size: 14px;
+      color:#D7ECFF;
+    }
+
+    .panelClose{
+      cursor:pointer;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.25);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 8px 10px;
+      font-size: 12px;
+    }
+
+    .panelBody{
+      padding: 14px 14px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .panelBtn{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+    }
+
+    .panelBtn:hover{
+      border-color: rgba(89,199,255,.55);
+      background: rgba(255,255,255,.05);
+    }
+
+    .panelBtn strong{
+      font-size: 13px;
+    }
+
+    .panelBtn span{
+      display:block;
+      margin-top:2px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .iconBox{
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.10);
+      flex: 0 0 auto;
+    }
+
+    .embedWrap{
+      border-radius: 16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.25);
+    }
+
+    .ytFrame{
+      width:100%;
+      aspect-ratio: 16/9;
+      border:0;
+      display:block;
+    }
+
+    .noteSmall{
+      font-size: 12px;
+      color: #93A3C8;
+      line-height:1.6;
+      margin-top: 2px;
+    }
+
+    /* language blocks */
+    .langBlock{
+      display:none;
+    }
+
+    .langBlock.active{
+      display:block;
+    }
+
+    /* Arabic RTL */
+    .rtl{
+      direction: rtl;
+      text-align: right;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrap">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="brandMini">
+        <div class="logoMini">PHK</div>
+        <div class="brandMiniTitle">
+          <strong>PHK Holdings</strong>
+          <span>MAIN · 12 Languages</span>
+        </div>
+      </div>
+
+      <div class="langBox">
+        <label for="langSelect">Language</label>
+        <select id="langSelect">
+          <option value="ko">한국어 (KO)</option>
+          <option value="en">English (EN)</option>
+          <option value="ar">العربية (AR)</option>
+          <option value="zh">中文简体 (ZH)</option>
+          <option value="ja">日本語 (JA)</option>
+          <option value="es">Español (ES)</option>
+          <option value="fr">Français (FR)</option>
+          <option value="de">Deutsch (DE)</option>
+          <option value="pt">Português (PT)</option>
+          <option value="ru">Русский (RU)</option>
+          <option value="hi">हिन्दी (HI)</option>
+          <option value="vi">Tiếng Việt (VI)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="heroHeader">
+        <div class="logo">PHK</div>
+        <div class="heroTitle">
+          <h1 id="mainTitle">PHK Holdings</h1>
+          <p id="mainSub">Public Human Kernel Holdings · Human-Centered Architecture</p>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="pill" id="pillText">
+          고정 원칙: 설명 없는 변경 없음 · 신뢰 훼손 없음 · 모든 변경은 공개 공지
+        </div>
+        <p class="lead" id="leadText">
+          PHK Holdings는 단일 서비스가 아닙니다.
+          사람 중심 기술 철학과 공공 금융 구조를 결합하여,
+          기본소득, 결제, 보상, 참여 설계가 하나의 흐름으로 작동하도록 만드는 지주형 구조입니다.
+          우리는 “짧은 홍보”가 아니라 “설명 책임”으로 신뢰를 쌓습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTENT GRID -->
+    <div class="grid">
+
+      <!-- LEFT MAIN -->
+      <section class="card">
+
+        <h2 id="sec1Title">PHK Holdings란 무엇인가</h2>
+
+        <p id="sec1P1">
+          PHK Holdings는 단순한 금융 서비스가 아닙니다.
+        </p>
+        <p id="sec1P2">
+          PHK Holdings는 단순한 웹사이트도 아닙니다.
+        </p>
+        <p id="sec1P3">
+          PHK Holdings는 “사람이 살아남는 구조”를 먼저 설계하고,
+          그 위에 기술과 금융을 얹는 지주형 설계 프레임입니다.
+        </p>
+        <p id="sec1P4">
+          우리는 과장된 약속으로 참여자를 모으지 않습니다.
+        </p>
+        <p id="sec1P5">
+          우리는 설명 없는 변경으로 신뢰를 잃지 않습니다.
+        </p>
+        <p id="sec1P6">
+          우리는 누구든 읽으면 이해되는 문장으로 원칙을 고정합니다.
+        </p>
+        <p id="sec1P7">
+          그리고 구조가 커질수록 오해가 늘어난다는 사실을 알기에,
+          더 선명하게 기준을 공개합니다.
+        </p>
+
+        <h3 id="sec2Title">핵심 철학</h3>
+
+        <p id="sec2P1">
+          기술이 커질수록, 사람을 더 살려야 합니다.
+        </p>
+        <p id="sec2P2">
+          우리는 “기술이 사람을 대체하는 세계”가 아니라,
+          “기술이 사람을 보호하는 세계”를 설계합니다.
+        </p>
+        <p id="sec2P3">
+          그래서 PHK Holdings는 아래 네 가지를 최우선으로 둡니다.
+        </p>
+
+        <ul class="list" id="sec2List">
+          <li>설명 책임: 누구나 이해할 수 있게 공개합니다.</li>
+          <li>실제 사용: 보여주기보다 실제 흐름을 우선합니다.</li>
+          <li>신뢰 연속성: 변경은 반드시 공개 공지와 근거를 동반합니다.</li>
+          <li>확장성: 글로벌 참여를 고려해 구조를 설계합니다.</li>
+        </ul>
+
+        <hr class="hr" />
+
+        <h3 id="sec3Title">운영 원칙 (고정 선언)</h3>
+
+        <p class="mono" id="sec3Mono">
+          1) 설명 없는 변경은 하지 않습니다.<br/>
+          2) 참여자의 신뢰를 훼손하는 선택은 하지 않습니다.<br/>
+          3) 모든 구조 변경은 공개 공지로만 진행됩니다.<br/>
+          4) 운영 기준은 문서로 남기고, 누구든 확인 가능해야 합니다.
+        </p>
+
+        <p id="sec3P1">
+          이 원칙은 홍보 문구가 아니라,
+          구조가 커질수록 반드시 필요해지는 안전장치입니다.
+        </p>
+        <p id="sec3P2">
+          PHK Holdings는 “흔들릴 수 없는 기준”을 먼저 세웁니다.
+        </p>
+        <p id="sec3P3">
+          그리고 그 기준 위에서만 확장합니다.
+        </p>
+
+        <hr class="hr" />
+
+        <h3 id="sec4Title">로드맵 (현실형)</h3>
+
+        <p id="sec4P1">
+          PHK Holdings는 “한 번에 완성”을 말하지 않습니다.
+        </p>
+        <p id="sec4P2">
+          대신 단계별로 공개하고, 검증하고, 쌓아갑니다.
+        </p>
+
+        <ul class="list" id="sec4List">
+          <li>Step 1: 메인 정체성 확정 + 고정 원칙 문서화 + 공개 공지 체계 구축</li>
+          <li>Step 2: 핵심 개념(참여, 보상, 기본소득)을 누구나 이해할 수 있게 자료로 공개</li>
+          <li>Step 3: 실제 사용 흐름(결제, 참여, 보상)을 설계하고 작은 단위부터 테스트</li>
+          <li>Step 4: 글로벌 확장(언어, 지역, 파트너)과 운영 기준 고도화</li>
+        </ul>
+
+        <p id="sec4P3">
+          핵심은 “빠르게 크게”가 아니라,
+          “끊기지 않는 신뢰”입니다.
+        </p>
+
+      </section>
+
+      <!-- RIGHT SIDE -->
+      <aside class="card">
+
+        <h2 id="sideTitle">요약</h2>
+
+        <p id="sideP1">
+          PHK Holdings는 상위 지주 구조입니다.
+        </p>
+        <p id="sideP2">
+          개별 기능을 흩뿌리는 것이 아니라,
+          하나의 철학으로 묶어 지속 가능한 흐름을 만드는 것이 목표입니다.
+        </p>
+        <p id="sideP3">
+          우리는 다음을 먼저 고정합니다.
+        </p>
+
+        <ul class="list" id="sideList">
+          <li>원칙</li>
+          <li>공개 공지</li>
+          <li>설명 책임</li>
+          <li>신뢰 연속성</li>
+        </ul>
+
+        <hr class="hr" />
+
+        <h3 id="faqTitle">FAQ</h3>
+
+        <details>
+          <summary id="faqQ1">Q1. PHK Holdings는 은행입니까?</summary>
+          <p id="faqA1">
+            아닙니다.
+            PHK Holdings는 지주 구조입니다.
+            “기술과 금융을 어떻게 사람 중심으로 설계할 것인가”를 통합 관리합니다.
+          </p>
+        </details>
+
+        <details>
+          <summary id="faqQ2">Q2. 왜 원칙을 이렇게 강조합니까?</summary>
+          <p id="faqA2">
+            참여자가 늘어나면 오해도 늘어납니다.
+            오해는 신뢰를 무너뜨립니다.
+            그래서 원칙을 먼저 고정하고, 변경은 공개 공지로만 진행합니다.
+          </p>
+        </details>
+
+        <details>
+          <summary id="faqQ3">Q3. 앞으로 무엇을 보면 됩니까?</summary>
+          <p id="faqA3">
+            구조, 로드맵, 공지 순서로 공개되는 내용을 보시면 됩니다.
+            짧은 홍보보다 “설명 책임을 지는 콘텐츠”가 우선입니다.
+          </p>
+        </details>
+
+      </aside>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      © 2026 PHK Holdings. All rights reserved.
+      <br/>
+      <span class="mono">Public Human Kernel Holdings</span>
+      <br/>
+      <span class="mono">Build trust by explanation, not by hype.</span>
+    </div>
+
+  </div>
+
+  <!-- =========================
+       RIGHT PANEL (HIDDEN UNTIL CLICK)
+       ========================= -->
+
+  <!-- ✅ 평소에는 이 버튼만 작게 보임 -->
+  <div class="floatingToggle" id="floatingToggle" aria-label="Open panel">
+    <div class="dot"></div>
+  </div>
+
+  <!-- ✅ 눌렀을 때만 나오는 패널 -->
+  <div class="sidePanel" id="sidePanel" aria-hidden="true">
+    <div class="panelHeader">
+      <strong id="panelTitle">Official Channels</strong>
+      <button class="panelClose" id="panelClose">닫기</button>
+    </div>
+
+    <div class="panelBody">
+
+      <!-- ✅ YouTube 1개 -->
+      <a class="panelBtn" href="https://www.youtube.com/@YOUR_CHANNEL" target="_blank" rel="noopener">
+        <div class="iconBox">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21.7 7.5c.2.8.3 2 .3 3.8v1.4c0 1.8-.1 3-.3 3.8-.2.9-.8 1.6-1.7 1.8-1.5.4-7 .4-7.7.4s-6.2 0-7.7-.4c-.9-.2-1.5-.9-1.7-1.8C3.1 15.7 3 14.5 3 12.7v-1.4c0-1.8.1-3 .3-3.8.2-.9.8-1.6 1.7-1.8C6.5 5.3 12 5.3 12.7 5.3s6.2 0 7.7.4c.9.2 1.5.9 1.7 1.8Z" fill="#E60000"/>
+            <path d="M11 10v4.8l4.2-2.4L11 10Z" fill="white"/>
+          </svg>
+        </div>
+        <div>
+          <strong id="ytBtnTitle">PHK Holdings YouTube</strong>
+          <span id="ytBtnSub">Vision · Structure · Roadmap · Notices</span>
+        </div>
+      </a>
+
+      <div class="embedWrap">
+        <iframe
+          class="ytFrame"
+          src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+          title="PHK Holdings Official Video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+      <div class="noteSmall" id="ytNote">
+        유튜브 영상 ID만 바꾸면, 이 자리에서 바로 재생됩니다.
+      </div>
+
+      <!-- ✅ TikTok 1개 -->
+      <a class="panelBtn" href="https://www.tiktok.com/@YOUR_TIKTOK" target="_blank" rel="noopener">
+        <div class="iconBox">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M15 3c.6 2.9 2.5 5 5 5v3c-2 0-3.8-.6-5-1.7V16a6 6 0 1 1-6-6c.3 0 .6 0 1 .1v3.2c-.3-.1-.6-.2-1-.2a3 3 0 1 0 3 3V3h3Z" fill="#FFFFFF"/>
+          </svg>
+        </div>
+        <div>
+          <strong id="ttBtnTitle">PHK Holdings TikTok</strong>
+          <span id="ttBtnSub">Short updates · Highlights · Community</span>
+        </div>
+      </a>
+
+      <div class="noteSmall" id="ttNote">
+        틱톡은 브라우저 정책상 임베드가 환경에 따라 제한될 수 있어,
+        기본은 공식 링크로 연결합니다.
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    /* =========================
+       RIGHT PANEL TOGGLE
+       ========================= */
+    const floatingToggle = document.getElementById("floatingToggle");
+    const sidePanel = document.getElementById("sidePanel");
+    const panelClose = document.getElementById("panelClose");
+
+    function openPanel(){
+      sidePanel.classList.add("open");
+      sidePanel.setAttribute("aria-hidden","false");
+    }
+
+    function closePanel(){
+      sidePanel.classList.remove("open");
+      sidePanel.setAttribute("aria-hidden","true");
+    }
+
+    floatingToggle.addEventListener("click", () => {
+      if(sidePanel.classList.contains("open")){
+        closePanel();
+      }else{
+        openPanel();
+      }
+    });
+
+    panelClose.addEventListener("click", () => {
+      closePanel();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape"){
+        closePanel();
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      const clickedInside = sidePanel.contains(e.target) || floatingToggle.contains(e.target);
+      if(!clickedInside){
+        closePanel();
+      }
+    });
+
+    /* =========================
+       12 LANGUAGE SYSTEM
+       - auto detect
+       - manual select
+       ========================= */
+
+    const langSelect = document.getElementById("langSelect");
+
+    const T = {
+      ko: {
+        mainTitle: "PHK Holdings",
+        mainSub: "Public Human Kernel Holdings · Human-Centered Architecture",
+        pillText: "고정 원칙: 설명 없는 변경 없음 · 신뢰 훼손 없음 · 모든 변경은 공개 공지",
+        leadText:
+          "PHK Holdings는 단일 서비스가 아닙니다. " +
+          "사람 중심 기술 철학과 공공 금융 구조를 결합하여, " +
+          "기본소득, 결제, 보상, 참여 설계가 하나의 흐름으로 작동하도록 만드는 지주형 구조입니다. " +
+          "우리는 짧은 홍보가 아니라 설명 책임으로 신뢰를 쌓습니다.",
+        sec1Title: "PHK Holdings란 무엇인가",
+        sec1P1: "PHK Holdings는 단순한 금융 서비스가 아닙니다.",
+        sec1P2: "PHK Holdings는 단순한 웹사이트도 아닙니다.",
+        sec1P3: "PHK Holdings는 사람이 살아남는 구조를 먼저 설계하고, 그 위에 기술과 금융을 얹는 지주형 설계 프레임입니다.",
+        sec1P4: "우리는 과장된 약속으로 참여자를 모으지 않습니다.",
+        sec1P5: "우리는 설명 없는 변경으로 신뢰를 잃지 않습니다.",
+        sec1P6: "우리는 누구든 읽으면 이해되는 문장으로 원칙을 고정합니다.",
+        sec1P7: "그리고 구조가 커질수록 오해가 늘어난다는 사실을 알기에, 더 선명하게 기준을 공개합니다.",
+        sec2Title: "핵심 철학",
+        sec2P1: "기술이 커질수록, 사람을 더 살려야 합니다.",
+        sec2P2: "우리는 기술이 사람을 대체하는 세계가 아니라, 기술이 사람을 보호하는 세계를 설계합니다.",
+        sec2P3: "그래서 PHK Holdings는 아래 네 가지를 최우선으로 둡니다.",
+        sec2List: [
+          "설명 책임: 누구나 이해할 수 있게 공개합니다.",
+          "실제 사용: 보여주기보다 실제 흐름을 우선합니다.",
+          "신뢰 연속성: 변경은 반드시 공개 공지와 근거를 동반합니다.",
+          "확장성: 글로벌 참여를 고려해 구조를 설계합니다."
+        ],
+        sec3Title: "운영 원칙 (고정 선언)",
+        sec3Mono:
+          "1) 설명 없는 변경은 하지 않습니다.<br/>" +
+          "2) 참여자의 신뢰를 훼손하는 선택은 하지 않습니다.<br/>" +
+          "3) 모든 구조 변경은 공개 공지로만 진행됩니다.<br/>" +
+          "4) 운영 기준은 문서로 남기고, 누구든 확인 가능해야 합니다.",
+        sec3P1: "이 원칙은 홍보 문구가 아니라, 구조가 커질수록 반드시 필요해지는 안전장치입니다.",
+        sec3P2: "PHK Holdings는 흔들릴 수 없는 기준을 먼저 세웁니다.",
+        sec3P3: "그리고 그 기준 위에서만 확장합니다.",
+        sec4Title: "로드맵 (현실형)",
+        sec4P1: "PHK Holdings는 한 번에 완성을 말하지 않습니다.",
+        sec4P2: "대신 단계별로 공개하고, 검증하고, 쌓아갑니다.",
+        sec4List: [
+          "Step 1: 메인 정체성 확정 + 고정 원칙 문서화 + 공개 공지 체계 구축",
+          "Step 2: 핵심 개념(참여, 보상, 기본소득)을 누구나 이해할 수 있게 자료로 공개",
+          "Step 3: 실제 사용 흐름(결제, 참여, 보상)을 설계하고 작은 단위부터 테스트",
+          "Step 4: 글로벌 확장(언어, 지역, 파트너)과 운영 기준 고도화"
+        ],
+        sec4P3: "핵심은 빠르게 크게가 아니라, 끊기지 않는 신뢰입니다.",
+        sideTitle: "요약",
+        sideP1: "PHK Holdings는 상위 지주 구조입니다.",
+        sideP2: "개별 기능을 흩뿌리는 것이 아니라, 하나의 철학으로 묶어 지속 가능한 흐름을 만드는 것이 목표입니다.",
+        sideP3: "우리는 다음을 먼저 고정합니다.",
+        sideList: ["원칙", "공개 공지", "설명 책임", "신뢰 연속성"],
+        faqTitle: "FAQ",
+        faqQ1: "Q1. PHK Holdings는 은행입니까?",
+        faqA1: "아닙니다. PHK Holdings는 지주 구조입니다. 기술과 금융을 어떻게 사람 중심으로 설계할 것인가를 통합 관리합니다.",
+        faqQ2: "Q2. 왜 원칙을 이렇게 강조합니까?",
+        faqA2: "참여자가 늘어나면 오해도 늘어납니다. 오해는 신뢰를 무너뜨립니다. 그래서 원칙을 먼저 고정하고, 변경은 공개 공지로만 진행합니다.",
+        faqQ3: "Q3. 앞으로 무엇을 보면 됩니까?",
+        faqA3: "구조, 로드맵, 공지 순서로 공개되는 내용을 보시면 됩니다. 짧은 홍보보다 설명 책임을 지는 콘텐츠가 우선입니다.",
+        panelTitle: "공식 채널",
+        panelClose: "닫기",
+        ytBtnTitle: "PHK Holdings 유튜브",
+        ytBtnSub: "비전 · 구조 · 로드맵 · 공지",
+        ytNote: "유튜브 영상 ID만 바꾸면, 이 자리에서 바로 재생됩니다.",
+        ttBtnTitle: "PHK Holdings 틱톡",
+        ttBtnSub: "쇼츠 업데이트 · 하이라이트 · 커뮤니티",
+        ttNote: "틱톡은 브라우저 정책상 임베드가 제한될 수 있어, 기본은 공식 링크로 연결합니다."
+      },
+
+      en: {
+        mainTitle: "PHK Holdings",
+        mainSub: "Public Human Kernel Holdings · Human-Centered Architecture",
+        pillText: "Fixed Rules: No changes without explanation · No trust damage · All changes are publicly announced",
+        leadText:
+          "PHK Holdings is not a single service. " +
+          "It is a holding architecture that integrates human-centered technology philosophy and public finance design, " +
+          "so that basic income, payments, rewards, and participation can operate as one coherent flow. " +
+          "We build trust through explanation, not hype.",
+        sec1Title: "What is PHK Holdings",
+        sec1P1: "PHK Holdings is not just a financial service.",
+        sec1P2: "PHK Holdings is not just a website.",
+        sec1P3: "PHK Holdings is a holding framework that designs survival-first structures for people, and then builds technology and finance on top.",
+        sec1P4: "We do not attract participants with exaggerated promises.",
+        sec1P5: "We do not lose trust through silent changes.",
+        sec1P6: "We lock principles with clear sentences anyone can understand.",
+        sec1P7: "As the structure grows, misunderstandings grow too, so we disclose standards more clearly.",
+        sec2Title: "Core Philosophy",
+        sec2P1: "The bigger technology becomes, the more it must protect people.",
+        sec2P2: "We design a world where technology protects humans, not replaces them.",
+        sec2P3: "PHK Holdings prioritizes the following four foundations.",
+        sec2List: [
+          "Accountability of explanation: Make it understandable to anyone.",
+          "Real usage: Prioritize real flow over show.",
+          "Trust continuity: Changes must include public notice and reasons.",
+          "Scalability: Design for global participation."
+        ],
+        sec3Title: "Operating Principles (Fixed Declaration)",
+        sec3Mono:
+          "1) No changes without explanation.<br/>" +
+          "2) No decisions that damage participant trust.<br/>" +
+          "3) All changes are made only through public notices.<br/>" +
+          "4) Standards must be documented and verifiable.",
+        sec3P1: "These are not slogans, but safety devices needed as the system grows.",
+        sec3P2: "PHK Holdings sets non-negotiable standards first.",
+        sec3P3: "And expands only on top of those standards.",
+        sec4Title: "Roadmap (Realistic)",
+        sec4P1: "PHK Holdings does not claim to be completed at once.",
+        sec4P2: "We disclose step by step, verify, and build.",
+        sec4List: [
+          "Step 1: Fix identity + document principles + establish public notice system",
+          "Step 2: Publish materials explaining participation, rewards, and basic income clearly",
+          "Step 3: Design real flows (payments, participation, rewards) and test in small units",
+          "Step 4: Expand globally (languages, regions, partners) and strengthen standards"
+        ],
+        sec4P3: "The core is not growing fast, but keeping trust unbroken.",
+        sideTitle: "Summary",
+        sideP1: "PHK Holdings is a top-level holding structure.",
+        sideP2: "The goal is not scattered features, but one philosophy that creates sustainable flows.",
+        sideP3: "We fix these first.",
+        sideList: ["Principles", "Public notices", "Accountability", "Trust continuity"],
+        faqTitle: "FAQ",
+        faqQ1: "Q1. Is PHK Holdings a bank?",
+        faqA1: "No. PHK Holdings is a holding architecture that integrates human-centered design of finance and technology.",
+        faqQ2: "Q2. Why emphasize principles so much?",
+        faqA2: "As participation grows, misunderstandings grow. Misunderstandings break trust. So we fix principles first and announce changes publicly.",
+        faqQ3: "Q3. What should I follow next?",
+        faqA3: "Follow the published structure, roadmap, and notices. Explanation content comes before short hype.",
+        panelTitle: "Official Channels",
+        panelClose: "Close",
+        ytBtnTitle: "PHK Holdings YouTube",
+        ytBtnSub: "Vision · Structure · Roadmap · Notices",
+        ytNote: "Replace the YouTube video ID and it will play here.",
+        ttBtnTitle: "PHK Holdings TikTok",
+        ttBtnSub: "Short updates · Highlights · Community",
+        ttNote: "TikTok embeds can be restricted, so we link to the official profile by default."
+      },
+
+      ar: {
+        mainTitle: "PHK Holdings",
+        mainSub: "Public Human Kernel Holdings · Human-Centered Architecture",
+        pillText: "قواعد ثابتة: لا تغيير بدون شرح · لا إضرار بالثقة · كل تغيير يتم عبر إعلان عام",
+        leadText:
+          "PHK Holdings ليست خدمة واحدة. " +
+          "إنها هيكل شركة قابضة يدمج فلسفة تقنية تتمحور حول الإنسان مع تصميم مالي عام، " +
+          "حتى يعمل الدخل الأساسي والمدفوعات والمكافآت والمشاركة كمسار واحد متماسك. " +
+          "نحن نبني الثقة بالشرح لا بالضجة.",
+        sec1Title: "ما هي PHK Holdings",
+        sec1P1: "PHK Holdings ليست مجرد خدمة مالية.",
+        sec1P2: "PHK Holdings ليست مجرد موقع إلكتروني.",
+        sec1P3: "PHK Holdings إطار قابض يصمم أولاً بنية لحماية الناس، ثم يبني التقنية والتمويل فوقها.",
+        sec1P4: "لا نجذب المشاركين بوعود مبالغ فيها.",
+        sec1P5: "لا نفقد الثقة بتغييرات صامتة.",
+        sec1P6: "نثبت المبادئ بجمل واضحة يفهمها الجميع.",
+        sec1P7: "كلما كبر الهيكل زادت سوء الفهم، لذا نوضح المعايير أكثر.",
+        sec2Title: "الفلسفة الأساسية",
+        sec2P1: "كلما كبرت التقنية، يجب أن تحمي الناس أكثر.",
+        sec2P2: "نصمم عالماً تحمي فيه التقنية الإنسان ولا تستبدله.",
+        sec2P3: "تعطي PHK Holdings الأولوية لأربع ركائز.",
+        sec2List: [
+          "مسؤولية الشرح: نجعلها مفهومة للجميع.",
+          "استخدام حقيقي: نفضل التدفق الحقيقي على الاستعراض.",
+          "استمرارية الثقة: كل تغيير بإعلان عام وأسبابه.",
+          "قابلية التوسع: تصميم للمشاركة العالمية."
+        ],
+        sec3Title: "مبادئ التشغيل (إعلان ثابت)",
+        sec3Mono:
+          "1) لا تغيير بدون شرح.<br/>" +
+          "2) لا قرارات تضر بثقة المشاركين.<br/>" +
+          "3) كل تغيير يتم فقط عبر إعلانات عامة.<br/>" +
+          "4) المعايير موثقة ويمكن التحقق منها.",
+        sec3P1: "هذه ليست شعارات، بل وسائل أمان مع نمو النظام.",
+        sec3P2: "نثبت المعايير أولاً.",
+        sec3P3: "ثم نتوسع فوقها فقط.",
+        sec4Title: "خارطة الطريق (واقعية)",
+        sec4P1: "لا نزعم الاكتمال دفعة واحدة.",
+        sec4P2: "نكشف خطوة بخطوة، نتحقق، ثم نبني.",
+        sec4List: [
+          "الخطوة 1: تثبيت الهوية + توثيق المبادئ + نظام الإعلانات العامة",
+          "الخطوة 2: نشر مواد تشرح المشاركة والمكافآت والدخل الأساسي",
+          "الخطوة 3: تصميم تدفقات حقيقية (مدفوعات/مشاركة/مكافآت) واختبارها تدريجياً",
+          "الخطوة 4: توسع عالمي (لغات/مناطق/شركاء) وتعزيز المعايير"
+        ],
+        sec4P3: "الهدف ليس السرعة، بل ثقة لا تنقطع.",
+        sideTitle: "ملخص",
+        sideP1: "PHK Holdings هي هيكل قابض على المستوى الأعلى.",
+        sideP2: "الهدف هو فلسفة واحدة تصنع تدفقات مستدامة، لا ميزات مبعثرة.",
+        sideP3: "نثبت هذه الأمور أولاً.",
+        sideList: ["المبادئ", "الإعلانات العامة", "مسؤولية الشرح", "استمرارية الثقة"],
+        faqTitle: "الأسئلة الشائعة",
+        faqQ1: "س1. هل PHK Holdings بنك؟",
+        faqA1: "لا. إنها هيكل قابض يدمج تصميم التمويل والتقنية المتمحور حول الإنسان.",
+        faqQ2: "س2. لماذا التركيز على المبادئ؟",
+        faqA2: "مع زيادة المشاركة يزيد سوء الفهم. سوء الفهم يهدم الثقة. لذا نثبت المبادئ أولاً ونعلن كل تغيير.",
+        faqQ3: "س3. ماذا أتابع بعد ذلك؟",
+        faqA3: "تابع الهيكل وخارطة الطريق والإعلانات. المحتوى الشارح قبل الدعاية القصيرة.",
+        panelTitle: "القنوات الرسمية",
+        panelClose: "إغلاق",
+        ytBtnTitle: "يوتيوب PHK Holdings",
+        ytBtnSub: "الرؤية · الهيكل · خارطة الطريق · الإعلانات",
+        ytNote: "بدّل معرّف الفيديو وسيعمل التشغيل هنا.",
+        ttBtnTitle: "تيك توك PHK Holdings",
+        ttBtnSub: "تحديثات قصيرة · لقطات · مجتمع",
+        ttNote: "قد يُقيَّد تضمين تيك توك، لذا نعتمد الرابط الرسمي افتراضياً."
+      },
+
+      zh: {
+        mainTitle: "PHK Holdings",
+        mainSub: "Public Human Kernel Holdings · Human-Centered Architecture",
+        pillText: "固定原则：不解释不变更 · 不损害信任 · 所有变更公开公告",
+        leadText:
+          "PHK Holdings 不是单一服务。 " +
+          "它是一个控股式架构，将以人为本的技术哲学与公共金融设计融合， " +
+          "让基本收入、支付、奖励与参与机制形成统一的运行闭环。 " +
+          "我们用“解释责任”建立信任，而不是靠噱头。",
+        sec1Title: "什么是 PHK Holdings",
+        sec1P1: "PHK Holdings 不只是金融服务。",
+        sec1P2: "PHK Holdings 也不只是一个网站。",
+        sec1P3: "PHK Holdings 是先设计“人能生存的结构”，再把技术与金融叠加在其上的控股框架。",
+        sec1P4: "我们不会用夸张承诺吸引参与者。",
+        sec1P5: "我们不会用无声变更损害信任。",
+        sec1P6: "我们用任何人都能理解的句子锁定原则。",
+        sec1P7: "结构越大误解越多，因此我们更清晰地公开标准。",
+        sec2Title: "核心哲学",
+        sec2P1: "技术越强大，就越要保护人。",
+        sec2P2: "我们设计的是技术保护人，而不是替代人的世界。",
+        sec2P3: "PHK Holdings 优先坚持四个基础。",
+        sec2List: [
+          "解释责任：让任何人都能理解。",
+          "真实使用：重视真实流动而非展示。",
+          "信任连续性：变更必须公开公告并说明理由。",
+          "可扩展性：面向全球参与进行设计。"
+        ],
+        sec3Title: "运营原则（固定声明）",
+        sec3Mono:
+          "1) 不解释不变更。<br/>" +
+          "2) 不做损害参与者信任的决定。<br/>" +
+          "3) 所有变更仅通过公开公告执行。<br/>" +
+          "4) 标准必须文档化且可验证。",
+        sec3P1: "这些不是口号，而是系统成长时必需的安全装置。",
+        sec3P2: "PHK Holdings 先确立不可动摇的标准。",
+        sec3P3: "只在标准之上扩展。",
+        sec4Title: "路线图（现实型）",
+        sec4P1: "PHK Holdings 不宣称一次性完成。",
+        sec4P2: "我们分阶段公开、验证并构建。",
+        sec4List: [
+          "步骤1：固定身份 + 文档化原则 + 建立公开公告体系",
+          "步骤2：发布清晰说明参与、奖励、基本收入的资料",
+          "步骤3：设计真实流动（支付/参与/奖励）并从小规模测试",
+          "步骤4：全球扩展（语言/地区/伙伴）与标准强化"
+        ],
+        sec4P3: "关键不是快，而是信任不断裂。",
+        sideTitle: "摘要",
+        sideP1: "PHK Holdings 是顶层控股结构。",
+        sideP2: "目标不是散乱功能，而是以同一哲学形成可持续流动。",
+        sideP3: "我们先固定这些内容。",
+        sideList: ["原则", "公开公告", "解释责任", "信任连续性"],
+        faqTitle: "FAQ",
+        faqQ1: "Q1. PHK Holdings 是银行吗？",
+        faqA1: "不是。它是控股式架构，用以整合以人为本的金融与技术设计。",
+        faqQ2: "Q2. 为什么强调原则？",
+        faqA2: "参与越多误解越多，误解会破坏信任。因此先固定原则，所有变更公开说明。",
+        faqQ3: "Q3. 接下来应该关注什么？",
+        faqA3: "关注结构、路线图与公告。解释型内容优先于短促宣传。",
+        panelTitle: "官方频道",
+        panelClose: "关闭",
+        ytBtnTitle: "PHK Holdings YouTube",
+        ytBtnSub: "愿景 · 结构 · 路线图 · 公告",
+        ytNote: "替换视频ID即可在此播放。",
+        ttBtnTitle: "PHK Holdings TikTok",
+        ttBtnSub: "短更新 · 精华 · 社区",
+        ttNote: "TikTok 嵌入可能受限，因此默认跳转到官方链接。"
+      },
+
+      ja: {
+        mainTitle: "PHK Holdings",
+        mainSub: "Public Human Kernel Holdings · Human-Centered Architecture",
+        pillText: "固定原則：説明なしの変更なし · 信頼を損なわない · 変更はすべて公開告知",
+        leadText:
+          "PHK Holdings は単一サービスではありません。 " +
+          "人間中心の技術哲学と公共金融設計を統合し、 " +
+          "ベーシックインカム、決済、報酬、参加設計が一つの流れとして機能する持株構造です。 " +
+          "私たちは誇張ではなく説明責任で信頼を築きます。",
+        sec1Title: "PHK Holdings とは",
+        sec1P1: "PHK Holdings は単なる金融サービスではありません。",
+        sec1P2: "PHK Holdings は単なるウェブサイトでもありません。",
+        sec1P3: "人が生き残れる構造を先に設計し、その上に技術と金融を積み上げる持株フレームです。",
+        sec1P4: "誇張された約束で参加者を集めません。",
+        sec1P5: "無言の変更で信頼を失いません。",
+        sec1P6: "誰でも理解できる文章で原則を固定します。",
+        sec1P7: "規模が大きくなるほど誤解も増えるため、基準をより明確に公開します。",
+        sec2Title: "核心哲学",
+        sec2P1: "技術が大きくなるほど、人をより守るべきです。",
+        sec2P2: "人を置き換えるのではなく、人を守る技術の世界を設計します。",
+        sec2P3: "PHK Holdings は次の4点を最優先します。",
+        sec2List: [
+          "説明責任：誰にでも分かるように公開する。",
+          "実利用：見せ方より実際の流れを重視する。",
+          "信頼の連続性：変更は公開告知と理由を必ず伴う。",
+          "拡張性：グローバル参加を前提に設計する。"
+        ],
+        sec3Title: "運用原則（固定宣言）",
+        sec3Mono:
+          "1) 説明なしの変更はしない。<br/>" +
+          "2) 参加者の信頼を損なう判断はしない。<br/>" +
+          "3) 変更は公開告知でのみ行う。<
+          <!-- ========================= -->
+<!-- LANGUAGE SELECTOR (12) -->
+<!-- ========================= -->
+<section class="card">
+  <h3>Language Support (12)</h3>
+  <p>
+    PHK Holdings는 글로벌 참여를 전제로 설계됩니다.
+    언어는 단순 번역이 아니라, <span class="hl">구조 이해를 돕는 인터페이스</span>입니다.
+  </p>
+
+  <div class="list">
+    <li>🇰🇷 한국어 (Korean)</li>
+    <li>🇺🇸 English</li>
+    <li>🇨🇳 中文 (简体)</li>
+    <li>🇯🇵 日本語</li>
+    <li>🇪🇸 Español</li>
+    <li>🇫🇷 Français</li>
+    <li>🇩🇪 Deutsch</li>
+    <li>🇷🇺 Русский</li>
+    <li>🇸🇦 العربية</li>
+    <li>🇮🇳 हिंदी</li>
+    <li>🇧🇷 Português</li>
+    <li>🇻🇳 Tiếng Việt</li>
+  </div>
+
+  <p class="mono">
+    ※ 현재는 한국어 기준 문서이며,  
+    각 언어는 동일한 구조 · 동일한 원칙으로 순차 확장됩니다.
+  </p>
+</section>
+
+<!-- ========================= -->
+<!-- MEDIA SECTION -->
+<!-- ========================= -->
+<section class="card">
+  <h3>Official Media</h3>
+  <p>
+    PHK Holdings의 모든 설명·공지·비전은  
+    **공식 영상 채널을 통해 공개적으로 전달**됩니다.
+  </p>
+
+  <!-- YouTube -->
+  <h4 style="margin-top:20px;">YouTube (Official)</h4>
+  <div class="ytWrap">
+    <iframe
+      src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID"
+      title="PHK Holdings YouTube"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <!-- TikTok -->
+  <h4 style="margin-top:26px;">TikTok (Official)</h4>
+  <div class="ytWrap">
+    <iframe
+      src="https://www.tiktok.com/embed/v2/YOUR_TIKTOK_VIDEO_ID"
+      title="PHK Holdings TikTok"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <p class="mono" style="margin-top:12px;">
+    ※ 외부 SNS는 홍보 수단이 아닌  
+    구조 설명과 책임 있는 공지 채널로만 사용됩니다.
+  </p>
+</section>
+
+<!-- ========================= -->
+<!-- RIGHT SIDE PANEL TOGGLE -->
+<!-- ========================= -->
+
+<!-- Toggle Button -->
+<button id="openPanel"
+  style="
+    position:fixed;
+    right:16px;
+    bottom:20px;
+    z-index:999;
+    padding:12px 14px;
+    border-radius:50%;
+    border:none;
+    background:#59C7FF;
+    color:#071024;
+    font-weight:900;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(89,199,255,.4);
+  ">
+  ☰
+</button>
+
+<!-- Side Panel -->
+<div id="sidePanel"
+  style="
+    position:fixed;
+    top:0;
+    right:-360px;
+    width:320px;
+    height:100%;
+    background:#0B1326;
+    border-left:1px solid #1B2A49;
+    box-shadow:-10px 0 40px rgba(0,0,0,.45);
+    z-index:1000;
+    padding:20px;
+    transition:right .35s ease;
+    overflow-y:auto;
+  ">
+
+  <h3 style="margin-top:0;">PHK Holdings</h3>
+  <p class="mono">
+    Public Human Kernel Holdings
+  </p>
+
+  <hr class="hr"/>
+
+  <ul class="list">
+    <li>📘 Vision & Philosophy</li>
+    <li>🏗 Structure Overview</li>
+    <li>📜 Fixed Principles</li>
+    <li>🧭 Roadmap</li>
+    <li>📢 Official Notices</li>
+  </ul>
+
+  <hr class="hr"/>
+
+  <button id="closePanel"
+    style="
+      width:100%;
+      padding:10px;
+      border-radius:10px;
+      border:1px solid #1B2A49;
+      background:rgba(255,255,255,.05);
+      color:#EAF0FF;
+      cursor:pointer;
+    ">
+    Close
+  </button>
+</div>
+
+<script>
+  const openBtn = document.getElementById("openPanel");
+  const closeBtn = document.getElementById("closePanel");
+  const panel = document.getElementById("sidePanel");
+
+  openBtn.onclick = () => {
+    panel.style.right = "0";
+  };
+
+  closeBtn.onclick = () => {
+    panel.style.right = "-360px";
+  };
+</script>
+
+<!-- ========================= -->
+<!-- FINAL DECLARATION -->
+<!-- ========================= -->
+<section class="card">
+  <h3>Final Declaration</h3>
+  <p>
+    PHK Holdings는 약속을 남발하지 않습니다.  
+    대신 <span class="hl">원칙을 고정</span>합니다.
+  </p>
+
+  <p>
+    기술이 커질수록,  
+    금융이 복잡해질수록,  
+    사람은 더 보호받아야 합니다.
+  </p>
+
+  <p class="mono">
+    “설명 없는 구조는 신뢰를 가질 수 없다.”  
+    이것이 PHK Holdings의 출발점입니다.
+  </p>
+</section>
