@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PHK Holdings Hub</title>
+  <meta name="description" content="PHK Holdings Hub - Robotics, Fusion Energy, Space Industry, Bank, Global, Foundation" />
+  <style>
+    :root{
+      --bg:#0b0f1a; --card:#121a2b; --card2:#0f1526;
+      --text:#e9eefc; --muted:#a9b4d6; --line:rgba(255,255,255,.10);
+      --brand:#7aa2ff; --brand2:#8bffdd; --warn:#ffcc66; --ok:#6ef3a5;
+      --shadow:0 10px 30px rgba(0,0,0,.35); --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Apple SD Gothic Neo,Noto Sans KR,Arial,sans-serif;
+      background: radial-gradient(1200px 600px at 20% 0%, rgba(122,162,255,.18), transparent 60%),
+                  radial-gradient(1200px 600px at 80% 10%, rgba(139,255,221,.12), transparent 55%),
+                  linear-gradient(180deg, #070a12, var(--bg));
+      color:var(--text);
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1120px;margin:0 auto;padding:18px 16px 80px}
+    .topbar{
+      display:flex;gap:12px;align-items:center;justify-content:space-between;
+      padding:14px 14px;border:1px solid var(--line);border-radius:var(--radius);
+      background:rgba(18,26,43,.75);backdrop-filter: blur(10px);
+      box-shadow: var(--shadow); position:sticky;top:10px;z-index:10;
+    }
+    .brand{display:flex;flex-direction:column;gap:2px;min-width:200px}
+    .brand b{font-size:16px;letter-spacing:.2px}
+    .brand span{font-size:12px;color:var(--muted)}
+    .controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+    select, button{
+      border:1px solid var(--line); background:rgba(15,21,38,.75);
+      color:var(--text); border-radius:12px; padding:10px 12px;
+      outline:none; font-size:14px;
+    }
+    button{cursor:pointer}
+    button.primary{
+      border-color: rgba(122,162,255,.35);
+      background: linear-gradient(135deg, rgba(122,162,255,.22), rgba(139,255,221,.12));
+    }
+    .hero{
+      margin-top:18px;border:1px solid var(--line);border-radius:var(--radius);
+      background: linear-gradient(135deg, rgba(18,26,43,.82), rgba(15,21,38,.72));
+      box-shadow: var(--shadow); overflow:hidden;
+    }
+    .hero-inner{
+      display:grid;grid-template-columns: 1.25fr .75fr; gap:14px;
+      padding:18px;align-items:stretch;
+    }
+    @media (max-width: 920px){.hero-inner{grid-template-columns:1fr}}
+    .hero h1{margin:0;font-size:26px;line-height:1.15}
+    .hero p{margin:10px 0 0;color:var(--muted);line-height:1.5}
+    .pillrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+    .pill{
+      border:1px solid var(--line); background:rgba(11,15,26,.55);
+      padding:7px 10px;border-radius:999px;font-size:12px;color:var(--muted);
+    }
+    .panel{
+      border:1px solid var(--line); background:rgba(11,15,26,.55);
+      border-radius:var(--radius); padding:14px; display:flex;flex-direction:column;gap:10px;
+    }
+    .panel h3{margin:0;font-size:14px;color:var(--muted);letter-spacing:.2px}
+    .kv{display:grid;grid-template-columns: 1fr 1fr; gap:10px}
+    .kv .k{
+      border:1px solid var(--line); border-radius:14px; padding:12px;
+      background:rgba(18,26,43,.55);
+    }
+    .kv .k b{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+    .kv .k span{display:block;font-size:14px}
+    .grid{display:grid;grid-template-columns: repeat(3, 1fr);gap:14px;margin-top:16px}
+    @media (max-width: 980px){.grid{grid-template-columns: repeat(2, 1fr)}}
+    @media (max-width: 640px){.grid{grid-template-columns: 1fr}}
+    .card{
+      border:1px solid var(--line); background:rgba(18,26,43,.65);
+      border-radius:var(--radius); padding:16px; box-shadow: var(--shadow);
+      display:flex;flex-direction:column;gap:10px; min-height:190px;
+    }
+    .card header{display:flex;gap:10px;align-items:center;justify-content:space-between}
+    .tag{
+      font-size:11px;color:var(--muted); border:1px solid var(--line);
+      padding:6px 9px;border-radius:999px;background:rgba(11,15,26,.55);
+      white-space:nowrap;
+    }
+    .card h2{margin:0;font-size:18px}
+    .card p{margin:0;color:var(--muted);line-height:1.5}
+    .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+    .btnrow button{flex:1;min-width:120px}
+    .section{
+      margin-top:16px;border:1px solid var(--line);background:rgba(18,26,43,.55);
+      border-radius:var(--radius);box-shadow: var(--shadow);padding:16px;
+    }
+    .section h3{margin:0 0 10px}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width: 900px){.two{grid-template-columns:1fr}}
+    .box{
+      border:1px solid var(--line); background:rgba(11,15,26,.55);
+      border-radius:14px; padding:14px;
+    }
+    .box h4{margin:0 0 8px;font-size:14px;color:var(--muted)}
+    .box ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.6}
+    .footer{
+      margin-top:16px;border:1px solid var(--line);border-radius:var(--radius);
+      background:rgba(15,21,38,.70);box-shadow: var(--shadow);padding:16px;
+      display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+    }
+    .small{font-size:12px;color:var(--muted);line-height:1.5}
+    .links{display:flex;gap:10px;flex-wrap:wrap}
+    .links a{
+      border:1px solid var(--line); background:rgba(11,15,26,.55);
+      padding:9px 12px;border-radius:12px;font-size:13px;color:var(--text);
+    }
+    .modal{
+      position:fixed;inset:0;background:rgba(0,0,0,.55);
+      display:none;align-items:center;justify-content:center;padding:18px;z-index:100;
+    }
+    .modal.show{display:flex}
+    .modal-card{
+      width:min(720px, 100%);border:1px solid var(--line);
+      background:rgba(18,26,43,.95);border-radius:var(--radius);
+      box-shadow: var(--shadow);padding:16px;
+    }
+    .modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .modal-head h3{margin:0;font-size:16px}
+    .modal-body{margin-top:10px;color:var(--muted);line-height:1.6}
+    .modal-body ul{margin:10px 0 0;padding-left:18px}
+    .hr{height:1px;background:var(--line);margin:12px 0}
+    .notice{
+      margin-top:10px;font-size:12px;color:rgba(233,238,252,.85);
+      border:1px solid rgba(255,255,255,.12);background:rgba(11,15,26,.45);
+      padding:10px 12px;border-radius:14px;
+    }
+    .notice b{color:var(--warn)}
+    .embed{
+      width:100%;aspect-ratio: 16 / 9;border:1px solid var(--line);
+      border-radius:14px;overflow:hidden;background:rgba(0,0,0,.25);
+    }
+    iframe{width:100%;height:100%;border:0}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <b id="ui_brand">PHK Holdings Hub</b>
+        <span id="ui_sub">One Hub · 7 Divisions · Global Platform</span>
+      </div>
+      <div class="controls">
+        <select id="langSelect" aria-label="Language">
+          <option value="ko">한국어</option>
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+          <option value="zh">中文</option>
+          <option value="ja">日本語</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="ru">Русский</option>
+          <option value="pt">Português</option>
+          <option value="hi">हिन्दी</option>
+          <option value="id">Bahasa Indonesia</option>
+        </select>
+        <button class="primary" id="btnCopyIntro">소개문 복사</button>
+        <button id="btnScroll">메뉴로</button>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <h1 id="ui_title">PHK Holdings · 통합 허브</h1>
+          <p id="ui_desc">
+            PHK Robotics · PHK Fusion Energy · PHK Space Industry · PHK Bank · PHK Global · 혜공통일재단까지
+            한 번에 연결하는 “단일 허브”입니다. 종목별 앱을 따로 만들지 않고도, 내부 메뉴로 완전 분리 운영이 가능합니다.
+          </p>
+          <div class="pillrow">
+            <div class="pill" id="pill1">업종코드: 722000 (소프트웨어·플랫폼)</div>
+            <div class="pill" id="pill2">7개 사업부 분리</div>
+            <div class="pill" id="pill3">다국어 12개</div>
+            <div class="pill" id="pill4">링크/영상/문의 통합</div>
+          </div>
+          <div class="notice" id="ui_notice">
+            <b>중요:</b> 본 허브는 “인허가 금융/제조/에너지 사업”이 아니라,
+            초기 단계에서 시스템·플랫폼 개발과 기획·운영을 중심으로 구성됩니다.
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3 id="ui_panel_title">빠른 정보</h3>
+          <div class="kv">
+            <div class="k"><b id="kv1k">주사업(권장)</b><span id="kv1v">시스템·응용 소프트웨어 개발</span></div>
+            <div class="k"><b id="kv2k">운영 방식</b><span id="kv2v">1개 허브 + 7개 페이지</span></div>
+            <div class="k"><b id="kv3k">콘텐츠</b><span id="kv3v">소개·로드맵·IR·영상</span></div>
+            <div class="k"><b id="kv4k">문의</b><span id="kv4v">파트너/투자/개발</span></div>
+          </div>
+          <div class="hr"></div>
+          <button class="primary" id="btnOpenMedia">유튜브/틱톡 바로가기</button>
+          <button id="btnOpenContact">문의/제휴 안내</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="menu"></div>
+
+    <section class="grid" aria-label="Divisions">
+      <div class="card">
+        <header><h2>PHK Holdings</h2><span class="tag">Holding · Strategy</span></header>
+        <p>그룹 전략/지배구조/로드맵/플랫폼 운영 총괄 허브입니다.</p>
+        <div class="btnrow">
+          <button class="primary" onclick="openModal('holdings')">자세히</button>
+          <button onclick="scrollToSection('sec_holdings')">이동</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <header><h2>PHK Robotics</h2><span class="tag">Robotics · Physical AI</span></header>
+        <p>산업/물류/의료/방산/특수/휴머노이드 로봇의 시스템·제어·데이터 플랫폼.</p>
+        <div class="btnrow">
+          <button class="primary" onclick="openModal('robotics')">자세히</button>
+          <button onclick="scrollToSection('sec_robotics')">이동</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <header><h2>PHK Fusion Energy</h2><span class="tag">Fusion · Simulation</span></header>
+        <p>핵융합/에너지 인프라의 시뮬레이션·데이터·예측 시스템을 개발합니다.</p>
+        <div class="btnrow">
+          <button class="primary" onclick="openModal('fusion')">자세히</button>
+          <button onclick="scrollToSection('sec_fusion')">이동</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <header><h2>PHK Space Industry</h2><span class="tag">Space · Data</span></header>
+        <p>우주산업(위성/인프라/정비/우주로봇) 관련 디지털 플랫폼과 분석 시스템.</p>
+        <div class="btnrow">
+          <button class="primary" onclick="openModal('space')">자세히</button>
+          <button onclick="scrollToSection('sec_space')">이동</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <header><h2>PHK Bank</h2><span class="tag">Fintech · Platform</span></header>
+        <p>금융기관이 아닌, 결제/정산/보상/UBI를 위한 시스템·플랫폼 개발 중심.</p>
+        <div class="btnrow">
+          <button class="primary" onclick="openModal('bank')">자세히</button>
+          <button onclick="scrollToSection('sec_bank')">이동</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <header><h2>PHK Global</h2><span class="tag">Global · Network</span></header>
+        <p>글로벌 파트너십/지사/프로젝트 맵을 연결하는 운영·협력 플랫폼.</p>
+        <div class="btnrow">
+          <button class="primary" onclick="openModal('global')">자세히</button>
+          <button onclick="scrollToSection('sec_global')">이동</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <header><h2>혜공통일재단</h2><span class="tag">Public Impact</span></header>
+        <p>기술이 사람을 살리는 방향으로 작동하도록 연결·설계하는 공익 기반.</p>
+        <div class="btnrow">
+          <button class="primary" onclick="openModal('foundation')">자세히</button>
+          <button onclick="scrollToSection('sec_foundation')">이동</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sec_holdings">
+      <h3>PHK Holdings</h3>
+      <div class="two">
+        <div class="box"><h4>핵심 역할</h4><ul>
+          <li>그룹 전략·로드맵·브랜딩·지배구조 기획</li>
+          <li>플랫폼(소프트웨어) 기반 통합 운영 허브</li>
+          <li>투자/파트너/고객 커뮤니케이션 창구</li>
+        </ul></div>
+        <div class="box"><h4>바로 실행</h4><ul>
+          <li>IR 요약/상세 문서 업로드</li>
+          <li>7개 사업부 페이지 관리</li>
+          <li>문의 폼/연락처 통합</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <section class="section" id="sec_robotics">
+      <h3>PHK Robotics</h3>
+      <div class="two">
+        <div class="box"><h4>제품/기술 방향</h4><ul>
+          <li>산업·물류·의료·방산·특수·휴머노이드 로봇</li>
+          <li>제어/운영/데이터 플랫폼(ROS2 등) 기반</li>
+          <li>현장 적용 중심의 “Physical AI”</li>
+        </ul></div>
+        <div class="box"><h4>콘텐츠 예시</h4><ul>
+          <li>라인업/로드맵/데모 영상</li>
+          <li>파트너 요청서/채용 공고</li>
+          <li>기술 블로그/개발 로그</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <section class="section" id="sec_fusion">
+      <h3>PHK Fusion Energy</h3>
+      <div class="two">
+        <div class="box"><h4>초기 모델(안전)</h4><ul>
+          <li>에너지 시스템 시뮬레이션/예측/최적화</li>
+          <li>데이터 분석·모니터링 플랫폼</li>
+          <li>기관/기업 협력 기반의 연구·기획</li>
+        </ul></div>
+        <div class="box"><h4>확장 모델</h4><ul>
+          <li>산업단지 에너지 운영 소프트웨어</li>
+          <li>중장기 핵융합 상용화 로드맵</li>
+          <li>국가·대기업 프로젝트 연계</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <section class="section" id="sec_space">
+      <h3>PHK Space Industry</h3>
+      <div class="two">
+        <div class="box"><h4>초기 모델(안전)</h4><ul>
+          <li>위성/우주 인프라 데이터 분석 플랫폼</li>
+          <li>우주정비·조립·물류 자동화 기획</li>
+          <li>우주 환경 대응 로봇 활용 모델 설계</li>
+        </ul></div>
+        <div class="box"><h4>확장 모델</h4><ul>
+          <li>관측/재난/국방 활용 서비스</li>
+          <li>지상국/운영 시스템 통합</li>
+          <li>글로벌 파트너십 기반 프로젝트 수행</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <section class="section" id="sec_bank">
+      <h3>PHK Bank</h3>
+      <div class="two">
+        <div class="box"><h4>중요 원칙(필수)</h4><ul>
+          <li>본 서비스는 “금융기관”이 아닙니다.</li>
+          <li>예금/대출/직접 송금(인허가 영역) 수행하지 않습니다.</li>
+          <li>결제/정산/보상/UBI를 위한 “시스템·플랫폼 개발” 중심입니다.</li>
+        </ul></div>
+        <div class="box"><h4>메뉴 예시</h4><ul>
+          <li>결제(설명 팝업) / 송금(설명 팝업)</li>
+          <li>예치율 / 보상 / 기본소득(UBI)</li>
+          <li>정책/보안/문의</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <section class="section" id="sec_global">
+      <h3>PHK Global</h3>
+      <div class="two">
+        <div class="box"><h4>핵심 역할</h4><ul>
+          <li>글로벌 협력/지사/프로젝트 네트워크</li>
+          <li>투자/파트너/정부·기관 연계 창구</li>
+          <li>다국어 브랜딩/콘텐츠 운영</li>
+        </ul></div>
+        <div class="box"><h4>바로 실행</h4><ul>
+          <li>국가별 파트너 페이지</li>
+          <li>프로젝트 맵(로드맵)</li>
+          <li>문의 폼/연락처 통합</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <section class="section" id="sec_foundation">
+      <h3>혜공통일재단</h3>
+      <div class="two">
+        <div class="box"><h4>미션</h4><ul>
+          <li>초대형 기술이 “사람을 살리는 방향”으로 작동하도록 연결·설계</li>
+          <li>취약계층 지원/기본소득(UBI) 설계/공익 프로젝트</li>
+          <li>기술 윤리/사회환원 구조 설계</li>
+        </ul></div>
+        <div class="box"><h4>후원/참여</h4><ul>
+          <li>후원 안내 카드/링크</li>
+          <li>프로젝트 진행 현황 공개</li>
+          <li>자원봉사/파트너 참여</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <section class="section" id="sec_media">
+      <h3 id="mediaTitle">미디어 (유튜브/틱톡)</h3>
+      <div class="two">
+        <div class="box">
+          <h4>유튜브</h4>
+          <div class="small">아래 링크/임베드 주소만 본인 채널/플레이리스트로 바꾸시면 “내 영상만” 노출됩니다.</div>
+          <div class="hr"></div>
+          <div class="links">
+            <a id="ytLink" href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube 열기</a>
+          </div>
+          <div style="height:10px"></div>
+          <div class="embed">
+            <iframe id="ytEmbed" src="https://www.youtube.com/embed?listType=playlist&list=PL0000000000000000" title="YouTube"></iframe>
+          </div>
+        </div>
+        <div class="box">
+          <h4>틱톡</h4>
+          <div class="small">틱톡은 임베드 제한이 있을 수 있어 “링크 방식”이 가장 안정적입니다.</div>
+          <div class="hr"></div>
+          <div class="links">
+            <a id="ttLink" href="https://www.tiktok.com/" target="_blank" rel="noopener">TikTok 열기</a>
+          </div>
+          <div class="notice" style="margin-top:12px">
+            <b>팁:</b> 틱톡 링크는 <span style="color:var(--ok)">프로필 주소</span>로 연결하시면 됩니다.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer">
+      <div>
+        <div class="small" id="footerText">
+          © PHK Holdings. All rights reserved.<br/>
+          운영 방식: 1개 허브(index.html) + 7개 종목 섹션 통합 관리.
+        </div>
+      </div>
+      <div class="links">
+        <a href="#menu" id="lnkTop">상단으로</a>
+        <a href="#sec_media" id="lnkMedia">미디어</a>
+        <a href="mailto:phk@example.com" id="lnkEmail">이메일</a>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="modalTitle">설명</h3>
+        <button onclick="closeModal()">닫기</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const i18n = {
+      ko:{brand:"PHK Holdings Hub",sub:"One Hub · 7 Divisions · Global Platform",
+        title:"PHK Holdings · 통합 허브",
+        desc:"PHK Robotics · PHK Fusion Energy · PHK Space Industry · PHK Bank · PHK Global · 혜공통일재단까지 한 번에 연결하는 단일 허브입니다. 종목별 앱을 따로 만들지 않고도, 내부 메뉴로 완전 분리 운영이 가능합니다.",
+        pill1:"업종코드: 722000 (소프트웨어·플랫폼)",pill2:"7개 사업부 분리",pill3:"다국어 12개",pill4:"링크/영상/문의 통합",
+        notice:"본 허브는 초기 단계에서 시스템·플랫폼 개발과 기획·운영을 중심으로 구성됩니다.",
+        panel:"빠른 정보",kv1k:"주사업(권장)",kv1v:"시스템·응용 소프트웨어 개발",kv2k:"운영 방식",kv2v:"1개 허브 + 7개 페이지",
+        kv3k:"콘텐츠",kv3v:"소개·로드맵·IR·영상",kv4k:"문의",kv4v:"파트너/투자/개발",copyBtn:"소개문 복사",menuBtn:"메뉴로",mediaTitle:"미디어 (유튜브/틱톡)"},
+      en:{brand:"PHK Holdings Hub",sub:"One Hub · 7 Divisions · Global Platform",
+        title:"PHK Holdings · Unified Hub",
+        desc:"A single hub connecting Robotics, Fusion Energy, Space Industry, PHK Bank, PHK Global, and the Hyekong Foundation. Operate fully separated divisions inside one app.",
+        pill1:"Industry code: 722000 (Software/Platform)",pill2:"7 divisions separated",pill3:"12 languages",pill4:"Links/Media/Contact in one",
+        notice:"This hub focuses on system/platform development and operations at the early stage.",
+        panel:"Quick Info",kv1k:"Primary scope",kv1v:"System/Application Software",kv2k:"Operation",kv2v:"One hub + seven pages",
+        kv3k:"Content",kv3v:"Intro · Roadmap · IR · Media",kv4k:"Contact",kv4v:"Partner/Investment/Dev",copyBtn:"Copy intro",menuBtn:"Menu",mediaTitle:"Media (YouTube/TikTok)"},
+      ar:{brand:"مركز PHK القابضة",sub:"مركز واحد · 7 أقسام · منصة عالمية",
+        title:"PHK Holdings · مركز موحد",
+        desc:"مركز واحد يربط الروبوتات والطاقة الاندماجية والفضاء والبنك والمنصة العالمية والمؤسسة، مع فصل الأقسام داخل تطبيق واحد.",
+        pill1:"رمز النشاط: 722000 (برمجيات/منصة)",pill2:"فصل 7 أقسام",pill3:"12 لغة",pill4:"روابط/إعلام/تواصل موحد",
+        notice:"يركز هذا المركز على تطوير المنصات والأنظمة في المرحلة المبكرة.",
+        panel:"معلومات سريعة",kv1k:"النطاق الرئيسي",kv1v:"برمجيات أنظمة/تطبيقات",kv2k:"طريقة التشغيل",kv2v:"مركز واحد + سبع صفحات",
+        kv3k:"المحتوى",kv3v:"تعريف · خارطة طريق · IR · إعلام",kv4k:"تواصل",kv4v:"شراكات/استثمار/تطوير",copyBtn:"نسخ التعريف",menuBtn:"القائمة",mediaTitle:"الإعلام (YouTube/TikTok)"},
+      zh:{brand:"PHK控股中心",sub:"一个中心 · 七大事业部 · 全球平台",
+        title:"PHK Holdings · 统一枢纽",
+        desc:"一个应用内连接机器人、聚变能源、航天产业、PHK Bank、PHK Global与基金会，并可在同一应用内完全分区运营。",
+        pill1:"行业代码：722000（软件/平台）",pill2:"7个事业部分离",pill3:"12种语言",pill4:"链接/媒体/联系一体化",
+        notice:"本枢纽以系统/平台开发与运营为主（早期阶段）。",
+        panel:"快速信息",kv1k:"主营范围",kv1v:"系统/应用软件开发",kv2k:"运营方式",kv2v:"一个枢纽+七个页面",
+        kv3k:"内容",kv3v:"介绍·路线图·IR·媒体",kv4k:"联系",kv4v:"合作/投资/开发",copyBtn:"复制简介",menuBtn:"菜单",mediaTitle:"媒体（YouTube/TikTok)"},
+      ja:{brand:"PHKホールディングス・ハブ",sub:"1つのハブ · 7部門 · グローバルプラットフォーム",
+        title:"PHK Holdings · 統合ハブ",
+        desc:"Robotics、Fusion Energy、Space Industry、PHK Bank、PHK Global、財団を1つのハブで接続し、アプリ内で分離運用します。",
+        pill1:"業種コード：722000（ソフト/プラットフォーム）",pill2:"7部門分離",pill3:"12言語",pill4:"リンク/メディア/問い合わせ統合",
+        notice:"初期はシステム/プラットフォーム開発と運用が中心です。",
+        panel:"クイック情報",kv1k:"主領域",kv1v:"システム/アプリ開発",kv2k:"運用",kv2v:"1ハブ+7ページ",
+        kv3k:"内容",kv3v:"紹介·ロードマップ·IR·メディア",kv4k:"連絡",kv4v:"提携/投資/開発",copyBtn:"紹介をコピー",menuBtn:"メニュー",mediaTitle:"メディア（YouTube/TikTok)"},
+      es:{brand:"Centro PHK Holdings",sub:"Un hub · 7 divisiones · Plataforma global",title:"PHK Holdings · Hub Unificado",
+        desc:"Un hub que conecta Robotics, Fusion Energy, Space Industry, PHK Bank, PHK Global y la fundación, con divisiones separadas dentro de una sola app.",
+        pill1:"Código: 722000 (Software/Plataforma)",pill2:"7 divisiones",pill3:"12 idiomas",pill4:"Links/Medios/Contacto",
+        notice:"En etapa inicial se centra en desarrollo y operación de sistemas/plataformas.",
+        panel:"Info rápida",kv1k:"Alcance",kv1v:"Software de sistemas/aplicaciones",kv2k:"Operación",kv2v:"Un hub + siete páginas",
+        kv3k:"Contenido",kv3v:"Intro · Roadmap · IR · Medios",kv4k:"Contacto",kv4v:"Partner/Inversión/Dev",copyBtn:"Copiar intro",menuBtn:"Menú",mediaTitle:"Medios (YouTube/TikTok)"},
+      fr:{brand:"Hub PHK Holdings",sub:"Un hub · 7 divisions · Plateforme mondiale",title:"PHK Holdings · Hub Unifié",
+        desc:"Un hub unique reliant Robotics, Fusion Energy, Space Industry, PHK Bank, PHK Global et la fondation, avec séparation complète par division.",
+        pill1:"Code: 722000 (Logiciel/Plateforme)",pill2:"7 divisions",pill3:"12 langues",pill4:"Liens/Médias/Contact",
+        notice:"Au démarrage, focus sur le développement et l’exploitation de systèmes/plateformes.",
+        panel:"Infos rapides",kv1k:"Périmètre",kv1v:"Logiciel système/applicatif",kv2k:"Opération",kv2v:"Un hub + sept pages",
+        kv3k:"Contenu",kv3v:"Intro · Roadmap · IR · Médias",kv4k:"Contact",kv4v:"Partenaires/Invest/Dev",copyBtn:"Copier l’intro",menuBtn:"Menu",mediaTitle:"Médias (YouTube/TikTok)"},
+      de:{brand:"PHK Holdings Hub",sub:"Ein Hub · 7 Bereiche · Globale Plattform",title:"PHK Holdings · Einheitlicher Hub",
+        desc:"Ein Hub, der Robotics, Fusion Energy, Space Industry, PHK Bank, PHK Global und die Stiftung verbindet – getrennte Bereiche innerhalb einer App.",
+        pill1:"Code: 722000 (Software/Plattform)",pill2:"7 Bereiche",pill3:"12 Sprachen",pill4:"Links/Media/Kontakt",
+        notice:"Frühe Phase: Entwicklung und Betrieb von Systemen/Plattformen.",
+        panel:"Kurzinfo",kv1k:"Schwerpunkt",kv1v:"System-/Anwendungssoftware",kv2k:"Betrieb",kv2v:"Ein Hub + sieben Seiten",
+        kv3k:"Inhalt",kv3v:"Intro · Roadmap · IR · Media",kv4k:"Kontakt",kv4v:"Partner/Investment/Dev",copyBtn:"Intro kopieren",menuBtn:"Menü",mediaTitle:"Media (YouTube/TikTok)"},
+      ru:{brand:"Хаб PHK Holdings",sub:"Один хаб · 7 направлений · Глобальная платформа",title:"PHK Holdings · Единый хаб",
+        desc:"Единый хаб, объединяющий Robotics, Fusion Energy, Space Industry, PHK Bank, PHK Global и фонд, с разделением направлений внутри одного приложения.",
+        pill1:"Код: 722000 (ПО/Платформа)",pill2:"7 направлений",pill3:"12 языков",pill4:"Ссылки/Медиа/Контакты",
+        notice:"Ранняя фаза: разработка и эксплуатация систем/платформ.",
+        panel:"Быстро",kv1k:"Фокус",kv1v:"Системное/прикладное ПО",kv2k:"Модель",kv2v:"Один хаб + 7 страниц",
+        kv3k:"Контент",kv3v:"Intro · Roadmap · IR · Медиа",kv4k:"Контакт",kv4v:"Партнер/Инвест/Dev",copyBtn:"Копировать",menuBtn:"Меню",mediaTitle:"Медиа (YouTube/TikTok)"},
+      pt:{brand:"Hub PHK Holdings",sub:"Um hub · 7 divisões · Plataforma global",title:"PHK Holdings · Hub Unificado",
+        desc:"Um hub que conecta Robotics, Fusion Energy, Space Industry, PHK Bank, PHK Global e a fundação, com divisões separadas dentro de um único app.",
+        pill1:"Código: 722000 (Software/Plataforma)",pill2:"7 divisões",pill3:"12 idiomas",pill4:"Links/Mídia/Contato",
+        notice:"Fase inicial: desenvolvimento e operação de sistemas/plataformas.",
+        panel:"Info rápida",kv1k:"Escopo",kv1v:"Software de sistemas/aplicações",kv2k:"Operação",kv2v:"Um hub + sete páginas",
+        kv3k:"Conteúdo",kv3v:"Intro · Roadmap · IR · Mídia",kv4k:"Contato",kv4v:"Parceiro/Invest/Dev",copyBtn:"Copiar intro",menuBtn:"Menu",mediaTitle:"Mídia (YouTube/TikTok)"},
+      hi:{brand:"PHK होल्डिंग्स हब",sub:"एक हब · 7 डिविज़न · ग्लोबल प्लेटफ़ॉर्म",title:"PHK Holdings · यूनिफ़ाइड हब",
+        desc:"एक ही हब में Robotics, Fusion Energy, Space Industry, PHK Bank, PHK Global और फ़ाउंडेशन को जोड़कर, ऐप के अंदर अलग-अलग डिविज़न के रूप में संचालित करें।",
+        pill1:"कोड: 722000 (सॉफ़्टवेयर/प्लेटफ़ॉर्म)",pill2:"7 डिविज़न",pill3:"12 भाषाएँ",pill4:"लिंक/मीडिया/कॉन्टैक्ट",
+        notice:"प्रारंभिक चरण: सिस्टम/प्लेटफ़ॉर्म विकास व संचालन।",
+        panel:"त्वरित जानकारी",kv1k:"दायरा",kv1v:"सिस्टम/एप सॉफ़्टवेयर",kv2k:"ऑपरेशन",kv2v:"एक हब + सात पेज",
+        kv3k:"कॉन्टेंट",kv3v:"Intro · Roadmap · IR · Media",kv4k:"संपर्क",kv4v:"Partner/Investment/Dev",copyBtn:"कॉपी",menuBtn:"मेनू",mediaTitle:"मीडिया (YouTube/TikTok)"},
+      id:{brand:"Hub PHK Holdings",sub:"Satu hub · 7 divisi · Platform global",title:"PHK Holdings · Hub Terpadu",
+        desc:"Satu hub yang menghubungkan Robotics, Fusion Energy, Space Industry, PHK Bank, PHK Global, dan foundation, dengan pemisahan divisi di dalam satu aplikasi.",
+        pill1:"Kode: 722000 (Software/Platform)",pill2:"7 divisi",pill3:"12 bahasa",pill4:"Tautan/Media/Kontak",
+        notice:"Tahap awal: pengembangan & operasi sistem/platform.",
+        panel:"Info Cepat",kv1k:"Cakupan",kv1v:"Software sistem/aplikasi",kv2k:"Operasi",kv2v:"Satu hub + tujuh halaman",
+        kv3k:"Konten",kv3v:"Intro · Roadmap · IR · Media",kv4k:"Kontak",kv4v:"Partner/Investasi/Dev",copyBtn:"Salin intro",menuBtn:"Menu",mediaTitle:"Media (YouTube/TikTok)"}
+    };
+
+    const modalData = {
+      holdings:{title:"PHK Holdings",body:["그룹 전체의 전략·브랜딩·로드맵·지배구조를 총괄하는 허브입니다.","초기에는 ‘소프트웨어/플랫폼(722000)’ 중심으로 운영하여 리스크를 낮춥니다."],bullets:["IR/로드맵 관리","파트너/투자 문의 창구","7개 사업부 통합 운영"]},
+      robotics:{title:"PHK Robotics",body:["로봇 제조를 당장 선언하기보다, 제어·운영·데이터 플랫폼부터 시작하는 것이 안전합니다."],bullets:["제어/운영 플랫폼","데모/파일럿","파트너/채용"]},
+      fusion:{title:"PHK Fusion Energy",body:["초기에는 시뮬레이션/데이터/최적화 중심으로 구성하는 것이 안전합니다."],bullets:["에너지 시뮬레이션","데이터 분석/예측","협력 프로젝트"]},
+      space:{title:"PHK Space Industry",body:["초기에는 우주 데이터·분석·플랫폼 중심으로 구성하고, 인허가 영역은 파트너십으로 확장하세요."],bullets:["우주 데이터 플랫폼","정비·물류 기획","파트너 네트워크"]},
+      bank:{title:"PHK Bank",body:["금융기관이 아니라 ‘핀테크 플랫폼/소프트웨어’로 정의하셔야 안전합니다."],bullets:["결제/정산(개발)","보상/UBI 구조","정책/보안 안내"]},
+      global:{title:"PHK Global",body:["글로벌 파트너/투자/프로젝트를 연결하는 운영 허브입니다."],bullets:["국가별 파트너 페이지","프로젝트 맵","다국어 브랜딩"]},
+      foundation:{title:"혜공통일재단",body:["기술이 사람을 살리는 방향으로 작동하도록 연결·설계하는 공익 기반입니다."],bullets:["공익 미션/프로젝트","후원 안내","활동 기록 공개"]}
+    };
+
+    function applyLang(lang){
+      const t=i18n[lang]||i18n.ko;
+      document.documentElement.lang=(lang==="ar")?"ar":"en";
+      document.getElementById("ui_brand").textContent=t.brand;
+      document.getElementById("ui_sub").textContent=t.sub;
+      document.getElementById("ui_title").textContent=t.title;
+      document.getElementById("ui_desc").textContent=t.desc;
+      document.getElementById("pill1").textContent=t.pill1;
+      document.getElementById("pill2").textContent=t.pill2;
+      document.getElementById("pill3").textContent=t.pill3;
+      document.getElementById("pill4").textContent=t.pill4;
+      document.getElementById("ui_notice").innerHTML=`<b>${(lang==="ko")?"중요:":"Important:"}</b> ${t.notice}`;
+      document.getElementById("ui_panel_title").textContent=t.panel;
+      document.getElementById("kv1k").textContent=t.kv1k; document.getElementById("kv1v").textContent=t.kv1v;
+      document.getElementById("kv2k").textContent=t.kv2k; document.getElementById("kv2v").textContent=t.kv2v;
+      document.getElementById("kv3k").textContent=t.kv3k; document.getElementById("kv3v").textContent=t.kv3v;
+      document.getElementById("kv4k").textContent=t.kv4k; document.getElementById("kv4v").textContent=t.kv4v;
+      document.getElementById("btnCopyIntro").textContent=t.copyBtn;
+      document.getElementById("btnScroll").textContent=t.menuBtn;
+      document.getElementById("mediaTitle").textContent=t.mediaTitle;
+      document.body.dir=(lang==="ar")?"rtl":"ltr";
+      localStorage.setItem("phk_lang",lang);
+    }
+
+    function scrollToSection(id){
+      const el=document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:"smooth",block:"start"});
+    }
+
+    function escapeHtml(str){
+      return String(str).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;").replaceAll("'","&#039;");
+    }
+
+    function openModal(key){
+      const m=modalData[key]; if(!m) return;
+      document.getElementById("modalTitle").textContent=m.title;
+      document.getElementById("modalBody").innerHTML=
+        `<div>${m.body.map(x=>`<div style="margin-bottom:8px">${escapeHtml(x)}</div>`).join("")}</div>
+         <div class="hr"></div><ul>${m.bullets.map(b=>`<li>${escapeHtml(b)}</li>`).join("")}</ul>`;
+      document.getElementById("modal").classList.add("show");
+    }
+    function closeModal(){document.getElementById("modal").classList.remove("show");}
+
+    function copyIntro(){
+      const title=document.getElementById("ui_title").textContent;
+      const desc=document.getElementById("ui_desc").textContent;
+      const text=`${title}\n\n${desc}\n\n- 업종코드(권장): 722000 (시스템·응용 소프트웨어 개발 및 공급업)\n- 운영: 1개 허브 + 7개 사업부 분리\n`;
+      navigator.clipboard.writeText(text).then(()=>alert("소개문이 클립보드에 복사되었습니다."))
+        .catch(()=>alert("복사 실패: 브라우저 설정을 확인해 주세요."));
+    }
+
+    document.getElementById("btnCopyIntro").addEventListener("click",copyIntro);
+    document.getElementById("btnScroll").addEventListener("click",()=>scrollToSection("menu"));
+    document.getElementById("btnOpenMedia").addEventListener("click",()=>scrollToSection("sec_media"));
+    document.getElementById("btnOpenContact").addEventListener("click",()=>openModal("holdings"));
+    document.getElementById("modal").addEventListener("click",(e)=>{if(e.target.id==="modal") closeModal();});
+
+    (function init(){
+      const saved=localStorage.getItem("phk_lang")||"ko";
+      document.getElementById("langSelect").value=saved;
+      applyLang(saved);
+      document.getElementById("langSelect").addEventListener("change",(e)=>applyLang(e.target.value));
+    })();
+  </script>
+</body>
+</html>
