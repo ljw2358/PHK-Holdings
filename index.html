@@ -1,523 +1,63 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>PHK Holdings Hub</title>
-  <meta name="description" content="PHK Holdings Hub – One Hub · 7 Divisions · Global Platform" />
+  <meta charset="UTF-8">
+  <title>PHK Bank</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    :root{
-      --bg:#0a1422;
-      --glass: rgba(255,255,255,.08);
-      --glass2: rgba(255,255,255,.12);
-      --stroke: rgba(255,255,255,.14);
-      --txt: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.65);
-      --muted2: rgba(255,255,255,.45);
-      --shadow: 0 18px 50px rgba(0,0,0,.35);
-      --r: 26px;
-      --r2: 18px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, sans-serif;
-      color:var(--txt);
-      background:
-        radial-gradient(1200px 600px at 30% 0%, rgba(120,180,255,.25), transparent 60%),
-        radial-gradient(1000px 700px at 80% 20%, rgba(90,255,210,.12), transparent 60%),
-        radial-gradient(900px 700px at 30% 90%, rgba(170,120,255,.10), transparent 60%),
-        linear-gradient(180deg, #07101d, #07101d 35%, #061224);
-      min-height:100vh;
-    }
-    a{color:inherit}
-    .wrap{
-      max-width:980px;
-      margin:0 auto;
-      padding:26px 16px 44px;
-    }
-    .glass{
-      background: linear-gradient(180deg, var(--glass2), var(--glass));
-      border:1px solid var(--stroke);
-      border-radius: var(--r);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-    .hero{
-      padding:22px 18px 18px;
-      position:relative;
-      overflow:hidden;
-    }
-    .hero:before{
-      content:"";
-      position:absolute; inset:-40px -60px auto auto;
-      width:260px; height:260px;
-      background: radial-gradient(circle at 30% 30%, rgba(120,180,255,.55), transparent 60%);
-      filter: blur(1px);
-      opacity:.9;
-      pointer-events:none;
-    }
-    .h1{
-      font-size: 34px;
-      letter-spacing:.2px;
-      margin:0 0 6px;
-      font-weight:800;
-    }
-    .sub{
-      margin:0 0 14px;
-      color:var(--muted);
-      font-weight:600;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .row{display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;}
-    .tag{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.06);
-      color:var(--muted);
-      font-weight:700;
-      font-size:13px;
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .grid2{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
-      margin-top:14px;
-    }
-    @media (min-width:820px){
-      .grid2{grid-template-columns: 1.2fr .8fr;}
+    .container {
+      display: flex;
+      gap: 28px;
+      justify-content: center;
+      align-items: center;
     }
 
-    .box{
-      padding:16px;
-      border-radius: var(--r2);
-      background: rgba(0,0,0,.14);
-      border:1px solid rgba(255,255,255,.10);
-    }
-    .k{
-      color:var(--muted2);
-      font-weight:800;
-      font-size:13px;
-      margin:0 0 6px;
-      text-transform:none;
-      letter-spacing:.2px;
-    }
-    .v{
-      margin:0;
-      font-size:24px;
-      font-weight:900;
-      line-height:1.15;
-    }
-    .v2{
-      margin:0;
-      font-size:16px;
-      font-weight:800;
-      color:var(--muted);
-    }
-
-    .btnRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;}
-    .btn{
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
-      color:var(--txt);
-      padding:12px 14px;
-      border-radius: 16px;
-      font-weight:900;
-      cursor:pointer;
-      transition: .18s ease;
-      min-width: 120px;
-    }
-    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.10);}
-    .btnPrimary{
-      background: linear-gradient(180deg, rgba(80,150,255,.35), rgba(80,150,255,.18));
-      border-color: rgba(120,180,255,.35);
-    }
-    .btnGreen{
-      background: linear-gradient(180deg, rgba(70,255,200,.22), rgba(70,255,200,.10));
-      border-color: rgba(70,255,200,.26);
-    }
-    .btnDark{
-      background: rgba(0,0,0,.20);
-      border-color: rgba(255,255,255,.12);
-    }
-
-    .section{margin-top:16px; padding:18px;}
-    .h2{margin:0; font-size:22px; font-weight:900;}
-    .p{margin:10px 0 0; color:var(--muted); font-weight:700; line-height:1.55;}
-
-    .cards{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:12px;
-      margin-top:12px;
-    }
-    @media (min-width:820px){
-      .cards{grid-template-columns: 1fr 1fr;}
-    }
-    .card{
-      padding:16px;
-      border-radius: var(--r2);
-      background: rgba(0,0,0,.14);
-      border:1px solid rgba(255,255,255,.10);
-    }
-    .cardTitle{
-      margin:0 0 8px;
-      font-size:20px;
-      font-weight:900;
-      letter-spacing:.2px;
-    }
-    .mini{
-      display:inline-flex;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color:var(--muted);
-      font-weight:900;
-      font-size:12px;
-      margin-bottom:10px;
-    }
-    footer{
-      margin-top:16px;
-      padding:16px 18px;
-      text-align:center;
-      color:var(--muted);
-      font-weight:800;
-      border-radius: var(--r);
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-    }
-    select{
-      border-radius: 16px;
-      padding:12px 14px;
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
-      color:var(--txt);
-      font-weight:900;
-      outline:none;
-      min-width: 200px;
+    .container a img {
+      width: 80px;
+      height: 80px;
+      cursor: pointer;
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
 
-    <!-- HERO -->
-    <section class="glass hero" id="top">
-      <div class="row">
-        <div>
-          <div class="h1">PHK Holdings Hub</div>
-          <div class="sub">One Hub · 7 Divisions · Global Platform</div>
-        </div>
-        <div class="tag">PHK · Holding · Strategy</div>
-      </div>
+  <div class="container">
 
-      <div class="grid2">
-        <div class="box">
-          <div class="k">언어</div>
-          <select id="lang">
-            <option value="ko" selected>한국어</option>
-            <option value="en">English</option>
-            <option value="ar">العربية</option>
-            <option value="zh">中文</option>
-            <option value="es">Español</option>
-            <option value="fr">Français</option>
-            <option value="de">Deutsch</option>
-            <option value="ru">Русский</option>
-            <option value="hi">हिन्दी</option>
-            <option value="pt">Português</option>
-            <option value="ja">日本語</option>
-            <option value="tr">Türkçe</option>
-          </select>
+    <!-- YouTube -->
+    <a href="https://www.youtube.com/@YOURCHANNEL" target="_blank">
+      <img src="youtube.png" alt="YouTube">
+    </a>
 
-          <div class="btnRow">
-            <button class="btn btnPrimary" id="btnIntroCopy">소개문 복사</button>
-            <button class="btn btnDark" id="btnMenu">메뉴로</button>
-            <button class="btn" id="btnMedia">미디어</button>
-            <button class="btn" id="btnEmail">이메일</button>
-          </div>
-        </div>
+    <!-- TikTok 1 -->
+    <a href="https://www.tiktok.com/@YOURID" target="_blank">
+      <img src="tiktok.png" alt="TikTok">
+    </a>
 
-        <div class="box">
-          <div class="k">운영 방식</div>
-          <p class="v">1개 허브 + 7개 페이지</p>
-          <p class="v2" style="margin-top:10px">콘텐츠: 소개 · 로드맵 · IR · 영상</p>
-          <p class="v2" style="margin-top:6px">문의: 파트너/투자/개발</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOLDINGS INTRO -->
-    <section class="glass section" id="intro">
-      <div class="row">
-        <h2 class="h2">PHK Holdings · 통합 허브</h2>
-        <span class="tag">Holding · Strategy</span>
-      </div>
-      <p class="p" id="introText">
-        PHK Robotics · PHK Fusion Energy · PHK Space Industry · PHK Bank · PHK Global · 혜공통일재단까지 한 번에 연결하는 단일 허브입니다.
-        종목별 앱을 따로 만들지 않고, 한곳에서 구조·로드맵·IR·미디어까지 전달합니다.
-      </p>
-
-      <div class="cards" style="margin-top:14px">
-        <div class="card">
-          <div class="mini">주사업(권장)</div>
-          <div class="cardTitle">시스템·응용 소프트웨어 개발</div>
-          <p class="p" style="margin-top:8px">
-            기술 자체를 소유하기보다, 로봇·에너지·우주 산업을 연결하는 운영 시스템과 플랫폼을 설계합니다.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="mini">문의</div>
-          <div class="cardTitle">파트너 / 투자 / 개발</div>
-          <p class="p" style="margin-top:8px">
-            국가·기관·기업·투자자와의 협업을 위한 소개 및 제휴 문의를 받습니다.
-          </p>
-          <div class="btnRow">
-            <button class="btn btnPrimary" id="btnAsk">문의/제휴 안내</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MENU -->
-    <section class="glass section" id="menu">
-      <div class="row">
-        <h2 class="h2">메뉴</h2>
-        <span class="tag">7 Divisions</span>
-      </div>
-
-      <div class="cards">
-        <div class="card">
-          <div class="mini">Holding · Strategy</div>
-          <div class="cardTitle">PHK Holdings</div>
-          <p class="p">그룹 전략/지배구조/로드맵/플랫폼 운영 총괄 허브입니다.</p>
-          <div class="btnRow">
-            <button class="btn" data-detail="holdings">설명 보기</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="mini">Robotics · Physical AI</div>
-          <div class="cardTitle">PHK Robotics</div>
-          <p class="p">산업·물류·의료·특수·방산·휴머노이드 로봇 플랫폼.</p>
-          <div class="btnRow">
-            <button class="btn" data-detail="robotics">설명 보기</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="mini">Fusion · Energy</div>
-          <div class="cardTitle">PHK Fusion Energy</div>
-          <p class="p">핵융합(인공태양) 제어/시뮬레이션/예측 시스템.</p>
-          <div class="btnRow">
-            <button class="btn" data-detail="fusion">설명 보기</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="mini">Space · Infrastructure</div>
-          <div class="cardTitle">PHK Space Industry</div>
-          <p class="p">위성·우주로봇·정비·인프라 자동화 플랫폼.</p>
-          <div class="btnRow">
-            <button class="btn" data-detail="space">설명 보기</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="mini">Fintech · Platform</div>
-          <div class="cardTitle">PHK Bank</div>
-          <p class="p">결제·정산·보상·UBI 시스템 중심 플랫폼(금융기관 아님).</p>
-          <div class="btnRow">
-            <button class="btn" data-detail="bank">설명 보기</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="mini">Global · Network</div>
-          <div class="cardTitle">PHK Global</div>
-          <p class="p">글로벌 파트너십/프로젝트/네트워크 연결 허브.</p>
-          <div class="btnRow">
-            <button class="btn" data-detail="global">설명 보기</button>
-          </div>
-        </div>
-
-        <div class="card" style="grid-column:1/-1">
-          <div class="mini">Public Impact</div>
-          <div class="cardTitle">혜공통일재단</div>
-          <p class="p">기술이 사람을 살리는 방향으로 작동하도록 연결·설계하는 공익 기반.</p>
-          <div class="btnRow">
-            <button class="btn" data-detail="foundation">설명 보기</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MEDIA (ONLY ONE PLACE) -->
-    <section class="glass section" id="media">
-      <div class="row">
-        <h2 class="h2">미디어 (유튜브/틱톡)</h2>
-        <span class="tag">Media</span>
-      </div>
-
-      <div class="card" style="margin-top:12px">
-        <div class="mini">YouTube</div>
-        <p class="p">
-          유튜브는 일부 영상이 외부 재생 제한(임베드 제한)일 수 있습니다.
-          아래 버튼으로 <b>내 채널</b>을 직접 열면 가장 안정적입니다.
-        </p>
-        <div class="btnRow">
-          <button class="btn btnPrimary" id="openYouTube">YouTube 열기</button>
-          <button class="btn btnDark" id="copyYouTube">유튜브 링크 복사</button>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top:12px">
-        <div class="mini">TikTok</div>
-        <p class="p">
-          틱톡은 임베드 제한이 있을 수 있어 <b>링크 방식</b>이 가장 안정적입니다.
-        </p>
-        <div class="btnRow">
-          <button class="btn btnPrimary" id="openTikTok">TikTok 열기</button>
-          <button class="btn btnDark" id="copyTikTok">틱톡 링크 복사</button>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top:12px">
-        <p class="p"><b>확실:</b> 영상이 안 떠도 “채널 열기” 버튼은 항상 작동합니다.</p>
-      </div>
-    </section>
-
-    <!-- EMAIL -->
-    <section class="glass section" id="email">
-      <div class="row">
-        <h2 class="h2">이메일</h2>
-        <span class="tag">Contact</span>
-      </div>
-      <p class="p">파트너십·투자·개발 문의는 이메일로 부탁드립니다.</p>
-      <div class="btnRow">
-        <button class="btn btnPrimary" id="emailBtn">이메일 보내기</button>
-      </div>
-      <p class="p" style="margin-top:10px;color:var(--muted2)">
-        * 이메일 주소는 원하시면 본인 주소로 바꿔드릴 수 있습니다.
-      </p>
-    </section>
-
-    <!-- MODAL -->
-    <section class="glass section" id="modal" style="display:none">
-      <div class="row">
-        <h2 class="h2" id="modalTitle">상세</h2>
-        <span class="tag" id="modalTag">Detail</span>
-      </div>
-      <p class="p" id="modalBody">상세 내용</p>
-      <div class="btnRow">
-        <button class="btn btnPrimary" id="modalClose">닫기</button>
-      </div>
-    </section>
-
-    <footer>
-      <div><b>PHK Holdings Hub</b> · Robotics · Fusion Energy · Space · Bank · Global · Public Impact</div>
-      <div style="margin-top:10px">© 2025 Hyekong (이재완). All Rights Reserved.</div>
-    </footer>
+    <!-- TikTok 2 -->
+    <a href="https://www.tiktok.com/@YOURID2" target="_blank">
+      <img src="tiktok.png" alt="TikTok">
+    </a>
 
   </div>
 
-  <script>
-    // ===== LINKS (USER PROVIDED) =====
-    const LINKS = {
-      youtube: "https://www.youtube.com/@Hyekong",
-      tiktok: "https://www.tiktok.com/@hyekong2025",
-      email: "mailto:hyekong2025@gmail.com"
-    };
-
-    // ===== NAV =====
-    const go = (id)=> document.getElementById(id).scrollIntoView({behavior:"smooth"});
-    document.getElementById("btnMenu").onclick = ()=> go("menu");
-    document.getElementById("btnMedia").onclick = ()=> go("media");
-    document.getElementById("btnEmail").onclick = ()=> go("email");
-
-    // ===== INTRO COPY =====
-    document.getElementById("btnIntroCopy").onclick = async ()=>{
-      const text = document.getElementById("introText").innerText.trim();
-      try{
-        await navigator.clipboard.writeText(text);
-        alert("소개문이 복사되었습니다.");
-      }catch(e){
-        alert("복사 권한이 막혀있습니다. 수동으로 복사해 주세요.");
-      }
-    };
-
-    // ===== MEDIA (ONLY ONE PLACE) =====
-    document.getElementById("openYouTube").onclick = ()=> window.open(LINKS.youtube, "_blank");
-    document.getElementById("openTikTok").onclick = ()=> window.open(LINKS.tiktok, "_blank");
-
-    document.getElementById("copyYouTube").onclick = async ()=>{
-      try{ await navigator.clipboard.writeText(LINKS.youtube); alert("유튜브 링크가 복사되었습니다."); }
-      catch(e){ alert("복사 권한이 막혀있습니다."); }
-    };
-    document.getElementById("copyTikTok").onclick = async ()=>{
-      try{ await navigator.clipboard.writeText(LINKS.tiktok); alert("틱톡 링크가 복사되었습니다."); }
-      catch(e){ alert("복사 권한이 막혀있습니다."); }
-    };
-
-    // ===== EMAIL =====
-    document.getElementById("btnEmail").onclick = ()=> window.location.href = LINKS.email;
-    document.getElementById("emailBtn").onclick = ()=> window.location.href = LINKS.email;
-
-    // ===== ASK =====
-    document.getElementById("btnAsk").onclick = ()=>{
-      alert("파트너십·투자·개발 문의는 이메일 버튼을 이용해 주세요.");
-    };
-
-    // ===== DETAILS =====
-    const DETAILS = {
-      holdings: { t:"PHK Holdings", tag:"Holding · Strategy",
-        b:"전체 그룹 전략, 지배구조, 로드맵, 투자 구조, 플랫폼 운영을 총괄합니다." },
-      robotics: { t:"PHK Robotics", tag:"Robotics · Physical AI",
-        b:"산업·물류·의료·특수·방산·휴머노이드 로봇을 위한 시스템·제어·데이터 플랫폼을 설계합니다." },
-      fusion: { t:"PHK Fusion Energy", tag:"Fusion · Energy",
-        b:"핵융합 및 에너지 인프라의 시뮬레이션, 예측, 제어 시스템을 연구·개발합니다." },
-      space: { t:"PHK Space Industry", tag:"Space · Infrastructure",
-        b:"위성·우주로봇·정비·인프라 자동화를 위한 디지털 플랫폼을 구축합니다." },
-      bank: { t:"PHK Bank", tag:"Fintech · Platform",
-        b:"금융기관이 아닌, 결제·정산·보상·UBI를 위한 시스템 중심의 플랫폼입니다." },
-      global: { t:"PHK Global", tag:"Global · Network",
-        b:"글로벌 파트너십, 프로젝트, 지사, 네트워크를 연결합니다." },
-      foundation: { t:"혜공통일재단", tag:"Public Impact",
-        b:"기술이 사람을 살리는 방향으로 사용되도록 연결·설계하는 공익 기반입니다." }
-    };
-
-    document.querySelectorAll("[data-detail]").forEach(btn=>{
-      btn.onclick = ()=>{
-        const key = btn.getAttribute("data-detail");
-        const d = DETAILS[key];
-        document.getElementById("modalTitle").innerText = d.t;
-        document.getElementById("modalTag").innerText = d.tag;
-        document.getElementById("modalBody").innerText = d.b;
-        document.getElementById("modal").style.display = "block";
-        go("modal");
-      };
-    });
-
-    document.getElementById("modalClose").onclick = ()=>{
-      document.getElementById("modal").style.display = "none";
-      go("menu");
-    };
-
-    // ===== LANGUAGE (minimal placeholder) =====
-    document.getElementById("lang").addEventListener("change", (e)=>{
-      const v = e.target.value;
-      if(v !== "ko"){
-        alert("다국어 텍스트 연결은 다음 단계에서 적용됩니다. (현재는 한국어 기본)");
-        e.target.value = "ko";
-      }
-    });
-  </script>
 </body>
 </html>
