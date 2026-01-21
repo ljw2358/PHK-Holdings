@@ -1,745 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PHK Holdings</title>
-  <meta name="description" content="PHK Holdings — holding company coordinating governance, capital strategy, and group structure across PHK subsidiaries." />
-  <meta name="theme-color" content="#0b1220" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PHK Holdings | Group Control Tower</title>
   <style>
-    :root{
-      --bg:#0b1220;
-      --card:#101a32;
-      --text:#eaf0ff;
-      --muted:#b8c3e6;
-      --line:rgba(255,255,255,.12);
-      --accent:#7cf7c2;
-      --accent2:#76a8ff;
-      --shadow:0 20px 60px rgba(0,0,0,.35);
-      --radius:18px;
-      --max:1140px;
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at top, #0f1c2e, #060b13);
+      color: #e6ebf2;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
-        "Apple SD Gothic Neo","Noto Sans KR","Noto Sans Arabic", sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(1200px 600px at 15% 0%, rgba(118,168,255,.18), transparent 60%),
-        radial-gradient(1000px 500px at 85% 10%, rgba(124,247,194,.16), transparent 55%),
-        radial-gradient(900px 700px at 50% 110%, rgba(255,211,106,.10), transparent 55%),
-        var(--bg);
-      line-height:1.55;
-      overflow-x:hidden;
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 24px;
     }
-    a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:26px 18px 56px}
-
-    header{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px; padding:14px 14px;
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(16,26,50,.82), rgba(16,26,50,.55));
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow);
-      position:sticky;
-      top:14px;
-      z-index:10;
+    h1 {
+      font-size: 44px;
+      line-height: 1.2;
+      margin-bottom: 24px;
     }
-    .brand{display:flex; align-items:center; gap:12px; min-width: 280px}
-    .logo{
-      width:42px; height:42px; border-radius:14px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(124,247,194,.9), rgba(124,247,194,.05) 55%),
-        radial-gradient(circle at 70% 70%, rgba(118,168,255,.85), rgba(118,168,255,.05) 60%),
-        rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.14);
-      box-shadow: 0 12px 30px rgba(0,0,0,.35);
-      display:grid; place-items:center;
-      position:relative; overflow:hidden;
-      flex:0 0 auto;
+    h2 {
+      margin-top: 80px;
+      font-size: 28px;
+      color: #7dd3fc;
     }
-    .logo:after{
-      content:"";
-      position:absolute; inset:-60%;
-      background: conic-gradient(from 180deg,
-        rgba(124,247,194,0), rgba(124,247,194,.35),
-        rgba(118,168,255,.35), rgba(255,211,106,.25),
-        rgba(124,247,194,0));
-      animation: spin 10s linear infinite;
+    p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #cbd5e1;
+      max-width: 900px;
     }
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .logo span{
-      position:relative; z-index:1;
-      font-weight:900; letter-spacing:.5px; font-size:14px;
-      color: rgba(10,18,32,.95);
-      background: rgba(234,240,255,.92);
-      padding:2px 8px; border-radius:10px;
+    .panel {
+      background: rgba(255,255,255,0.04);
+      border-radius: 18px;
+      padding: 32px;
+      margin-top: 32px;
+      border: 1px solid rgba(255,255,255,0.08);
     }
-    .brand h1{margin:0; font-size:16px; letter-spacing:.2px}
-    .brand p{margin:0; font-size:12px; color:var(--muted)}
-
-    .rightTop{display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end}
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.05);
-      color: var(--muted);
-      font-size:12px;
-      white-space:nowrap;
+    ul {
+      margin: 16px 0 0 0;
+      padding-left: 18px;
     }
-    .chip b{color: var(--text)}
-    .dot{width:8px;height:8px;border-radius:50%; background: var(--accent); box-shadow: 0 0 18px rgba(124,247,194,.55)}
-
-    .langBar{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
-    .langLabel{
-      font-size:12px;
-      color: var(--muted);
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
+    li {
+      margin-bottom: 10px;
+      font-size: 17px;
+      color: #e5e7eb;
     }
-    .langBtn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      color: var(--text);
-      font-size:12px;
-      cursor:pointer;
-      transition: transform .15s ease, background .2s ease, border-color .2s ease;
-      user-select:none;
-      min-width:44px;
-      text-transform:uppercase;
+    .footer {
+      margin-top: 120px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 16px;
+      color: #94a3b8;
     }
-    .langBtn:hover{transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.2)}
-    .langBtn.active{
-      background: linear-gradient(90deg, rgba(124,247,194,.18), rgba(118,168,255,.18));
-      border-color: rgba(124,247,194,.30);
-      box-shadow: 0 10px 28px rgba(0,0,0,.25);
+    .email {
+      margin-top: 12px;
+      font-weight: 600;
+      color: #7dd3fc;
     }
-
-    .hero{
-      margin-top:18px;
-      padding:26px 18px 18px;
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background: linear-gradient(180deg, rgba(16,26,50,.78), rgba(16,26,50,.40));
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-    .hero:before{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(900px 220px at 20% 0%, rgba(124,247,194,.18), transparent 60%),
-        radial-gradient(780px 220px at 80% 0%, rgba(118,168,255,.18), transparent 60%);
-      pointer-events:none;
-    }
-    .heroGrid{
-      position:relative;
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap:16px;
-      align-items:stretch;
-    }
-    @media (max-width: 900px){ .heroGrid{grid-template-columns:1fr} }
-
-    .kicker{
-      display:inline-flex; gap:8px; align-items:center;
-      color: var(--muted); font-size:12px; letter-spacing:.25px;
-      background: rgba(255,255,255,.05);
-      border:1px solid var(--line);
-      padding:8px 12px;
-      border-radius:999px;
-      width:fit-content;
-    }
-    .hero h2{
-      margin:14px 0 10px;
-      font-size:34px;
-      line-height:1.12;
-      letter-spacing:-.5px;
-    }
-    .hero h2 .grad{
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-    }
-    .hero p{margin:0 0 16px; color: var(--muted); font-size:14px; max-width: 78ch}
-
-    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top: 6px}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:11px 14px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      font-weight:900;
-      font-size:13px;
-      cursor:pointer;
-      transition: transform .15s ease, background .2s ease, border-color .2s ease;
-      min-width: 170px;
-    }
-    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.22)}
-    .btn.primary{
-      background: linear-gradient(90deg, rgba(124,247,194,.18), rgba(118,168,255,.18));
-      border-color: rgba(124,247,194,.22);
-    }
-    .btn.primary:hover{border-color: rgba(124,247,194,.35)}
-    .btn.ghost{
-      background: rgba(0,0,0,.18);
-      border-color: rgba(255,255,255,.14);
-    }
-
-    section{margin-top:18px}
-    .sectionHead{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
-      margin:0 0 10px;
-      padding:0 6px;
-    }
-    .sectionHead h3{margin:0; font-size:16px}
-    .sectionHead p{margin:0; color: var(--muted); font-size:12px}
-
-    .grid3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:12px;
-    }
-    @media (max-width: 900px){ .grid3{grid-template-columns:1fr} }
-
-    .box{
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background: rgba(255,255,255,.04);
-      padding:16px;
-      box-shadow: 0 14px 38px rgba(0,0,0,.22);
-    }
-    .tag{
-      display:inline-flex;
-      padding:6px 10px;
-      border-radius:999px;
-      background: rgba(124,247,194,.10);
-      border:1px solid rgba(124,247,194,.18);
-      color: var(--text);
-      font-size:12px;
-      margin-bottom:10px;
-      width:fit-content;
-    }
-    .box h4{margin:0 0 8px; font-size:14px}
-    .box p{margin:0; color: var(--muted); font-size:13px}
-
-    .cols{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-    @media (max-width: 900px){ .cols{grid-template-columns:1fr} }
-
-    .list{margin:0; padding:0; list-style:none; display:grid; gap:10px}
-    .item{
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background: rgba(255,255,255,.035);
-      padding:14px;
-    }
-    .item b{display:block; margin-bottom:6px; font-size:13px}
-    .item small{color: var(--muted); font-size:12px}
-
-    /* Contact footer (bottom) */
-    .footer{
-      margin-top:22px;
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      background: rgba(255,255,255,.04);
-      padding:16px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
-    }
-    .muted{color:var(--muted)}
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.05);
-      color: var(--text);
-      font-size:12px;
-      cursor:pointer;
-      transition: transform .15s ease, background .2s ease, border-color .2s ease;
-      user-select:none;
-    }
-    .pill:hover{transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.2)}
-
-    .toast{
-      position: fixed;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      background: rgba(16,26,50,.92);
-      border:1px solid rgba(255,255,255,.18);
-      color: var(--text);
-      padding: 10px 12px;
-      border-radius: 14px;
-      box-shadow: var(--shadow);
-      display:none;
-      gap:10px;
-      align-items:center;
-      z-index: 50;
-      max-width: calc(100% - 24px);
-    }
-    .toast.show{display:flex}
-    .toast .bar{
-      width:8px;height:8px;border-radius:50%;
-      background: var(--accent);
-      box-shadow: 0 0 18px rgba(124,247,194,.55);
-    }
-
-    /* RTL tweaks for Arabic */
-    html[dir="rtl"] .brand{flex-direction:row-reverse}
-    html[dir="rtl"] .brand > div{text-align:right}
-    html[dir="rtl"] .heroGrid{direction:rtl}
-    html[dir="rtl"] .heroGrid > div{direction:rtl}
-    html[dir="rtl"] .sectionHead{flex-direction:row-reverse}
-    html[dir="rtl"] .footer{flex-direction:row-reverse}
   </style>
 </head>
-
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand" aria-label="PHK Holdings">
-        <div class="logo" aria-hidden="true"><span>PHK</span></div>
-        <div>
-          <h1 id="t_brand">PHK Holdings</h1>
-          <p id="t_tagline">Group Governance • Capital Strategy • Portfolio Control</p>
-        </div>
-      </div>
 
-      <div class="rightTop">
-        <span class="chip"><span class="dot"></span> <span id="t_status"><b>LANG</b>: EN</span></span>
-        <div class="langBar" aria-label="Language">
-          <span class="langLabel" id="t_langLabel">Language</span>
-          <button class="langBtn" data-lang="en" type="button">EN</button>
-          <button class="langBtn" data-lang="ko" type="button">KR</button>
-          <button class="langBtn" data-lang="ar" type="button">AR</button>
-        </div>
-      </div>
-    </header>
+  <div class="container">
 
-    <div class="hero" id="top">
-      <div class="heroGrid">
-        <div>
-          <div class="kicker">
-            <span class="dot"></span>
-            <span id="t_kicker">Governance • Capital • Structure • Accountability</span>
-          </div>
+    <h1>
+      하나의 지주 프레임.<br/>
+      하나의 그룹 표준.<br/>
+      하나의 책임.
+    </h1>
 
-          <h2 id="t_heroTitle">
-            One holding frame. <span class="grad">One group standard.</span> One direction.
-          </h2>
+    <p>
+      PHK Holdings는 PHK 그룹의 전략 지주회사입니다.<br/>
+      우리는 사업을 소개하지 않습니다.<br/>
+      <strong>사업을 통제하고, 자본을 배분하며, 의사결정을 구조화합니다.</strong>
+    </p>
 
-          <p id="t_heroDesc">
-            PHK Holdings is the strategic holding company of the PHK group. We coordinate governance, capital strategy,
-            portfolio architecture, and group-level standards to keep each subsidiary fast, disciplined, and aligned.
-          </p>
-
-          <div class="ctaRow">
-            <a class="btn primary" href="#mandate" id="t_cta1">Holding Mandate</a>
-            <a class="btn" href="#subsidiaries" id="t_cta2">Subsidiaries</a>
-            <a class="btn ghost" href="#contact" id="t_cta3">Contact</a>
-          </div>
-
-          <div class="box" style="margin-top:14px">
-            <div class="tag" id="t_focusTag">Group Principle</div>
-            <p id="t_focusDesc" class="muted" style="margin:0">
-              Holdings stays lean: control, governance, capital allocation, and group standards — execution lives in subsidiaries.
-            </p>
-          </div>
-        </div>
-
-        <div class="box">
-          <h4 id="t_rightTitle" style="margin:0 0 10px">What Holdings controls</h4>
-          <ul class="list" style="gap:10px">
-            <li class="item"><b id="t_r1">Governance & decision rights</b><small id="t_r1d">Board-level standards, approvals, and accountability across the group.</small></li>
-            <li class="item"><b id="t_r2">Capital strategy & allocation</b><small id="t_r2d">Funding paths, budget discipline, and investment priorities per unit.</small></li>
-            <li class="item"><b id="t_r3">Portfolio architecture</b><small id="t_r3d">Clear boundaries between subsidiaries with shared group policy.</small></li>
-            <li class="item"><b id="t_r4">Risk, compliance, & reporting</b><small id="t_r4d">Unified reporting cadence, risk controls, and compliance readiness.</small></li>
-          </ul>
-        </div>
-      </div>
+    <div class="panel">
+      <h2>PHK Holdings의 역할</h2>
+      <ul>
+        <li>그룹 지배구조 및 소유 구조 설계</li>
+        <li>자본 배분 원칙 및 투자 승인 체계</li>
+        <li>계열사 간 역할 분리와 중복 제거</li>
+        <li>중장기 그룹 전략 및 리스크 관리</li>
+        <li>이사회·경영진 책임 구조 명확화</li>
+      </ul>
     </div>
 
-    <section id="mandate">
-      <div class="sectionHead">
-        <h3 id="t_mandateTitle">Holding Mandate</h3>
-        <p id="t_mandateSub">Four pillars that keep the group scalable</p>
-      </div>
+    <div class="panel">
+      <h2>지배 구조 철학</h2>
+      <p>
+        PHK는 느슨한 연합체가 아닙니다.<br/>
+        각 계열사는 독립적으로 실행하되,<br/>
+        <strong>전략·자본·책임은 지주에서 일원화됩니다.</strong>
+      </p>
+      <ul>
+        <li>PHK Robotics – 생산과 기술 실행</li>
+        <li>PHK Fusion Energy – 장기 에너지 로드맵</li>
+        <li>PHK Global – 국가별 확장 전략</li>
+        <li>PHK PartsBank – 거래·공급·현금흐름</li>
+      </ul>
+    </div>
 
-      <div class="grid3">
-        <div class="box">
-          <div class="tag" id="t_m1tag">Governance</div>
-          <h4 id="t_m1t">Group Operating Standard</h4>
-          <p id="t_m1d">Decision rights, approvals, and group policies — simple, enforceable, and measurable.</p>
-        </div>
-        <div class="box">
-          <div class="tag" id="t_m2tag">Capital</div>
-          <h4 id="t_m2t">Capital Discipline</h4>
-          <p id="t_m2d">Capital allocation based on milestones, ROI, and strategic priority — not noise.</p>
-        </div>
-        <div class="box">
-          <div class="tag" id="t_m3tag">Structure</div>
-          <h4 id="t_m3t">Portfolio Clarity</h4>
-          <p id="t_m3d">Clear subsidiary scope, clean ownership lines, and shared group rules.</p>
-        </div>
-      </div>
+    <div class="panel">
+      <h2>왜 지주사가 먼저인가</h2>
+      <p>
+        기술보다 먼저 필요한 것은 구조입니다.<br/>
+        시장보다 먼저 필요한 것은 통제입니다.<br/>
+        PHK Holdings는 모든 계열사가 빠르게 실행하면서도
+        흔들리지 않도록 만드는 기준점입니다.
+      </p>
+    </div>
 
-      <div class="grid3" style="margin-top:12px">
-        <div class="box">
-          <div class="tag" id="t_m4tag">Control</div>
-          <h4 id="t_m4t">Reporting & Accountability</h4>
-          <p id="t_m4d">Unified reporting, auditability, and accountability — to move faster with trust.</p>
-        </div>
-        <div class="box">
-          <div class="tag" id="t_m5tag">Synergy</div>
-          <h4 id="t_m5t">Group Synergy Policy</h4>
-          <p id="t_m5d">Shared procurement, shared standards, shared talent — while execution stays independent.</p>
-        </div>
-        <div class="box">
-          <div class="tag" id="t_m6tag">Risk</div>
-          <h4 id="t_m6t">Risk & Compliance Readiness</h4>
-          <p id="t_m6d">Group risk layer and compliance readiness that partners and investors can trust.</p>
-        </div>
-      </div>
-    </section>
+    <div class="footer">
+      <div>PHK Holdings</div>
+      <div>Group Governance · Capital Strategy · Portfolio Control</div>
+      <div class="email">Contact: info@phkbank.com</div>
+    </div>
 
-    <section id="subsidiaries">
-      <div class="sectionHead">
-        <h3 id="t_subTitle">Subsidiaries</h3>
-        <p id="t_subSub">Execution units under one holding frame</p>
-      </div>
-
-      <div class="cols">
-        <div class="box">
-          <h4 id="t_subA">Core Businesses</h4>
-          <ul class="list">
-            <li class="item"><b id="t_sa1">PHK Robotics</b><small id="t_sa1d">Robotics R&D, manufacturing, deployment, and service platforms.</small></li>
-            <li class="item"><b id="t_sa2">PHK Fusion Energy</b><small id="t_sa2d">Fusion-energy roadmap, partnerships, and long-term infrastructure planning.</small></li>
-            <li class="item"><b id="t_sa3">PHK Space Industry</b><small id="t_sa3d">Space-industry programs, robotics integration, and advanced operations.</small></li>
-          </ul>
-        </div>
-
-        <div class="box">
-          <h4 id="t_subB">Platforms & Infrastructure</h4>
-          <ul class="list">
-            <li class="item"><b id="t_sb1">PHK Bank</b><small id="t_sb1d">Financial infrastructure strategy aligned with group operations and partners.</small></li>
-            <li class="item"><b id="t_sb2">PHK Global</b><small id="t_sb2d">Regional operations enablement: localization, partners, and group support.</small></li>
-            <li class="item"><b id="t_sb3">PHK PartsBank</b><small id="t_sb3d">Parts supply chain & exchange infrastructure supporting group execution.</small></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ✅ 연락처는 맨 아래 -->
-    <section id="contact">
-      <div class="footer">
-        <div>
-          <div style="font-weight:900; letter-spacing:.2px" id="t_contactTitle">Contact</div>
-          <div class="muted" style="font-size:13px; margin-top:6px">
-            <span id="t_emailLabel">Email</span>:
-            <a href="mailto:info@phkholdings.com" id="emailLink" style="text-decoration:underline">info@phkholdings.com</a>
-          </div>
-          <div class="muted" style="font-size:12px; margin-top:6px" id="t_footerNote">
-            PHK Holdings — governance, capital discipline, and group structure.
-          </div>
-        </div>
-
-        <div style="display:flex; gap:10px; flex-wrap:wrap">
-          <button class="pill" type="button" id="copyEmailBtn">📩 <span id="t_copyEmail">Copy Email</span></button>
-          <a class="pill" href="#top">⬆️ <span id="t_backTop">Back to top</span></a>
-        </div>
-      </div>
-    </section>
   </div>
 
-  <div class="toast" id="toast" role="status" aria-live="polite">
-    <div class="bar" aria-hidden="true"></div>
-    <div id="toastMsg" style="font-size:12px"></div>
-  </div>
-
-  <script>
-    (function(){
-      const EMAIL = "info@phkholdings.com";
-
-      const T = {
-        en:{
-          langLabel:"Language",
-          status:"LANG: EN",
-          tagline:"Group Governance • Capital Strategy • Portfolio Control",
-          kicker:"Governance • Capital • Structure • Accountability",
-          heroTitle:'One holding frame. <span class="grad">One group standard.</span> One direction.',
-          heroDesc:"PHK Holdings is the strategic holding company of the PHK group. We coordinate governance, capital strategy, portfolio architecture, and group-level standards to keep each subsidiary fast, disciplined, and aligned.",
-          cta1:"Holding Mandate", cta2:"Subsidiaries", cta3:"Contact",
-          focusTag:"Group Principle",
-          focusDesc:"Holdings stays lean: control, governance, capital allocation, and group standards — execution lives in subsidiaries.",
-
-          rightTitle:"What Holdings controls",
-          r1:"Governance & decision rights", r1d:"Board-level standards, approvals, and accountability across the group.",
-          r2:"Capital strategy & allocation", r2d:"Funding paths, budget discipline, and investment priorities per unit.",
-          r3:"Portfolio architecture", r3d:"Clear boundaries between subsidiaries with shared group policy.",
-          r4:"Risk, compliance, & reporting", r4d:"Unified reporting cadence, risk controls, and compliance readiness.",
-
-          mandateTitle:"Holding Mandate",
-          mandateSub:"Four pillars that keep the group scalable",
-          m1tag:"Governance", m1t:"Group Operating Standard", m1d:"Decision rights, approvals, and group policies — simple, enforceable, and measurable.",
-          m2tag:"Capital", m2t:"Capital Discipline", m2d:"Capital allocation based on milestones, ROI, and strategic priority — not noise.",
-          m3tag:"Structure", m3t:"Portfolio Clarity", m3d:"Clear subsidiary scope, clean ownership lines, and shared group rules.",
-          m4tag:"Control", m4t:"Reporting & Accountability", m4d:"Unified reporting, auditability, and accountability — to move faster with trust.",
-          m5tag:"Synergy", m5t:"Group Synergy Policy", m5d:"Shared procurement, shared standards, shared talent — while execution stays independent.",
-          m6tag:"Risk", m6t:"Risk & Compliance Readiness", m6d:"Group risk layer and compliance readiness that partners and investors can trust.",
-
-          subTitle:"Subsidiaries",
-          subSub:"Execution units under one holding frame",
-          subA:"Core Businesses",
-          sa1:"PHK Robotics", sa1d:"Robotics R&D, manufacturing, deployment, and service platforms.",
-          sa2:"PHK Fusion Energy", sa2d:"Fusion-energy roadmap, partnerships, and long-term infrastructure planning.",
-          sa3:"PHK Space Industry", sa3d:"Space-industry programs, robotics integration, and advanced operations.",
-          subB:"Platforms & Infrastructure",
-          sb1:"PHK Bank", sb1d:"Financial infrastructure strategy aligned with group operations and partners.",
-          sb2:"PHK Global", sb2d:"Regional operations enablement: localization, partners, and group support.",
-          sb3:"PHK PartsBank", sb3d:"Parts supply chain & exchange infrastructure supporting group execution.",
-
-          contactTitle:"Contact",
-          emailLabel:"Email",
-          footerNote:"PHK Holdings — governance, capital discipline, and group structure.",
-          copyEmail:"Copy Email",
-          backTop:"Back to top",
-          toastCopied:"Copied",
-          toastCopyFail:"Copy failed"
-        },
-
-        ko:{
-          langLabel:"언어",
-          status:"LANG: KR",
-          tagline:"그룹 거버넌스 · 자본 전략 · 포트폴리오 통제",
-          kicker:"지배구조 • 자본 • 구조 • 책임",
-          heroTitle:'하나의 지주 프레임. <span class="grad">하나의 그룹 표준.</span> 하나의 방향.',
-          heroDesc:"PHK Holdings는 PHK 그룹의 전략 지주회사입니다. 거버넌스, 자본 전략, 포트폴리오 구조, 그룹 표준을 총괄하여 각 계열사가 빠르고 단단하게 실행하도록 정렬합니다.",
-          cta1:"지주사 역할", cta2:"계열사", cta3:"연락처",
-          focusTag:"그룹 원칙",
-          focusDesc:"홀딩스는 ‘통제/거버넌스/자본배분/그룹표준’만 담당합니다. 실행은 각 계열사가 합니다.",
-
-          rightTitle:"홀딩스가 통제하는 것",
-          r1:"거버넌스·의사결정 권한", r1d:"이사회 기준, 승인 체계, 그룹 책임 구조.",
-          r2:"자본 전략·배분", r2d:"마일스톤/ROI/우선순위 기반 자본 집행.",
-          r3:"포트폴리오 구조", r3d:"계열사 범위 명확화 + 그룹 공통 정책.",
-          r4:"리스크·준법·보고", r4d:"리포팅, 리스크 통제, 준법 준비의 단일 표준.",
-
-          mandateTitle:"지주사 역할",
-          mandateSub:"그룹이 커져도 흔들리지 않는 4대 축",
-          m1tag:"거버넌스", m1t:"그룹 운영 표준", m1d:"의사결정 권한, 승인, 정책 — 단순·집행 가능·측정 가능.",
-          m2tag:"자본", m2t:"자본 규율", m2d:"잡음이 아니라 ‘성과와 우선순위’에 따라 자본을 배분합니다.",
-          m3tag:"구조", m3t:"포트폴리오 명확화", m3d:"계열사 스코프, 지분 라인, 그룹 공통 룰을 정리합니다.",
-          m4tag:"통제", m4t:"보고·책임", m4d:"단일 리포팅, 감사 가능성, 책임 구조로 더 빨리 움직입니다.",
-          m5tag:"시너지", m5t:"그룹 시너지 정책", m5d:"공동 구매/표준/인재는 공유하되, 실행은 독립적으로.",
-          m6tag:"리스크", m6t:"리스크·준법 준비", m6d:"파트너·투자자가 신뢰할 수 있는 그룹 리스크 레이어.",
-
-          subTitle:"계열사",
-          subSub:"하나의 지주 프레임 아래 실행 조직",
-          subA:"핵심 사업",
-          sa1:"PHK Robotics", sa1d:"로봇 R&D, 생산, 배치, 서비스 플랫폼.",
-          sa2:"PHK Fusion Energy", sa2d:"핵융합 에너지 로드맵, 파트너십, 장기 인프라 계획.",
-          sa3:"PHK Space Industry", sa3d:"우주산업 프로그램, 로봇 통합, 고도 운영.",
-          subB:"플랫폼·인프라",
-          sb1:"PHK Bank", sb1d:"그룹 운영 및 파트너 정합의 금융 인프라 전략.",
-          sb2:"PHK Global", sb2d:"지역 지원 프레임: 파트너/현지 운영/그룹 지원.",
-          sb3:"PHK PartsBank", sb3d:"부품 공급망·거래 인프라로 그룹 실행을 뒷받침.",
-
-          contactTitle:"연락처",
-          emailLabel:"이메일",
-          footerNote:"PHK Holdings — 거버넌스, 자본 규율, 그룹 구조.",
-          copyEmail:"이메일 복사",
-          backTop:"맨 위로",
-          toastCopied:"복사 완료",
-          toastCopyFail:"복사 실패"
-        },
-
-        ar:{
-          langLabel:"اللغة",
-          status:"LANG: AR",
-          tagline:"حوكمة المجموعة • استراتيجية رأس المال • التحكم في المحفظة",
-          kicker:"الحوكمة • رأس المال • الهيكل • المساءلة",
-          heroTitle:'إطار شركة قابضة واحد. <span class="grad">معيار مجموعة واحد.</span> اتجاه واحد.',
-          heroDesc:"PHK Holdings هي الشركة القابضة الاستراتيجية لمجموعة PHK. ننسّق الحوكمة واستراتيجية رأس المال وبنية المحفظة ومعايير المجموعة لضمان سرعة التنفيذ والانضباط والاتساق بين الشركات التابعة.",
-          cta1:"تفويض القابضة", cta2:"الشركات التابعة", cta3:"التواصل",
-          focusTag:"مبدأ المجموعة",
-          focusDesc:"الشركة القابضة تبقى رشيقة: الحوكمة وتخصيص رأس المال ومعايير المجموعة — التنفيذ داخل الشركات التابعة.",
-
-          rightTitle:"ما الذي تتحكم به الشركة القابضة",
-          r1:"الحوكمة وحقوق القرار", r1d:"معايير مجلس الإدارة والموافقات والمساءلة على مستوى المجموعة.",
-          r2:"استراتيجية رأس المال والتخصيص", r2d:"مسارات التمويل والانضباط المالي وأولويات الاستثمار لكل وحدة.",
-          r3:"بنية المحفظة", r3d:"حدود واضحة بين الشركات التابعة مع سياسة موحدة للمجموعة.",
-          r4:"المخاطر والامتثال والتقارير", r4d:"إيقاع تقارير موحّد وضوابط مخاطر واستعداد للامتثال.",
-
-          mandateTitle:"تفويض الشركة القابضة",
-          mandateSub:"أربع ركائز تُبقي المجموعة قابلة للتوسع",
-          m1tag:"حوكمة", m1t:"معيار تشغيل المجموعة", m1d:"حقوق القرار والموافقات والسياسات — بسيطة وقابلة للتنفيذ والقياس.",
-          m2tag:"رأس المال", m2t:"انضباط رأس المال", m2d:"تخصيص رأس المال وفق المعالم وROI والأولوية الاستراتيجية — لا الضوضاء.",
-          m3tag:"هيكل", m3t:"وضوح المحفظة", m3d:"نطاق واضح للشركات التابعة وخطوط ملكية نظيفة وقواعد موحّدة.",
-          m4tag:"تحكم", m4t:"التقارير والمساءلة", m4d:"تقارير موحّدة وقابلية للتدقيق ومساءلة للتحرك أسرع بثقة.",
-          m5tag:"تكامل", m5t:"سياسة التآزر", m5d:"مشتريات ومعايير ومواهب مشتركة — مع استقلال التنفيذ.",
-          m6tag:"مخاطر", m6t:"الجاهزية للامتثال", m6d:"طبقة مخاطر وامتثال موثوقة للشركاء والمستثمرين.",
-
-          subTitle:"الشركات التابعة",
-          subSub:"وحدات تنفيذ تحت إطار الشركة القابضة",
-          subA:"الأعمال الأساسية",
-          sa1:"PHK Robotics", sa1d:"بحث وتطوير الروبوتات والتصنيع والنشر ومنصات الخدمة.",
-          sa2:"PHK Fusion Energy", sa2d:"خارطة طريق الاندماج والشراكات وتخطيط البنية طويلة الأجل.",
-          sa3:"PHK Space Industry", sa3d:"برامج صناعة الفضاء وتكامل الروبوتات والعمليات المتقدمة.",
-          subB:"المنصات والبنية التحتية",
-          sb1:"PHK Bank", sb1d:"استراتيجية بنية مالية متوافقة مع عمليات المجموعة والشركاء.",
-          sb2:"PHK Global", sb2d:"إطار دعم إقليمي: شركاء وتشغيل محلي ودعم للمجموعة.",
-          sb3:"PHK PartsBank", sb3d:"بنية توريد وتبادل قطع تدعم تنفيذ المجموعة.",
-
-          contactTitle:"التواصل",
-          emailLabel:"البريد",
-          footerNote:"PHK Holdings — الحوكمة وانضباط رأس المال وبنية المجموعة.",
-          copyEmail:"نسخ البريد",
-          backTop:"أعلى الصفحة",
-          toastCopied:"تم النسخ",
-          toastCopyFail:"فشل النسخ"
-        }
-      };
-
-      const toast = document.getElementById("toast");
-      const toastMsg = document.getElementById("toastMsg");
-
-      function showToast(msg){
-        toastMsg.textContent = msg;
-        toast.classList.add("show");
-        clearTimeout(showToast._t);
-        showToast._t = setTimeout(()=> toast.classList.remove("show"), 2200);
-      }
-
-      function setText(id, value){ const el = document.getElementById(id); if(el) el.textContent = value; }
-      function setHTML(id, value){ const el = document.getElementById(id); if(el) el.innerHTML = value; }
-
-      function detectLang(){
-        const nav = (navigator.language || "en").toLowerCase();
-        if (nav.startsWith("ko")) return "ko";
-        if (nav.startsWith("ar")) return "ar";
-        return "en";
-      }
-
-      function applyLang(lang){
-        const use = lang || detectLang();
-        const d = T[use] || T.en;
-
-        setText("t_langLabel", d.langLabel);
-        setHTML("t_status", `<b>LANG</b>: ${use.toUpperCase()}`);
-        setText("t_tagline", d.tagline);
-        setText("t_kicker", d.kicker);
-        setHTML("t_heroTitle", d.heroTitle);
-        setText("t_heroDesc", d.heroDesc);
-        setText("t_cta1", d.cta1); setText("t_cta2", d.cta2); setText("t_cta3", d.cta3);
-        setText("t_focusTag", d.focusTag);
-        setText("t_focusDesc", d.focusDesc);
-
-        setText("t_rightTitle", d.rightTitle);
-        setText("t_r1", d.r1); setText("t_r1d", d.r1d);
-        setText("t_r2", d.r2); setText("t_r2d", d.r2d);
-        setText("t_r3", d.r3); setText("t_r3d", d.r3d);
-        setText("t_r4", d.r4); setText("t_r4d", d.r4d);
-
-        setText("t_mandateTitle", d.mandateTitle);
-        setText("t_mandateSub", d.mandateSub);
-
-        setText("t_m1tag", d.m1tag); setText("t_m1t", d.m1t); setText("t_m1d", d.m1d);
-        setText("t_m2tag", d.m2tag); setText("t_m2t", d.m2t); setText("t_m2d", d.m2d);
-        setText("t_m3tag", d.m3tag); setText("t_m3t", d.m3t); setText("t_m3d", d.m3d);
-        setText("t_m4tag", d.m4tag); setText("t_m4t", d.m4t); setText("t_m4d", d.m4d);
-        setText("t_m5tag", d.m5tag); setText("t_m5t", d.m5t); setText("t_m5d", d.m5d);
-        setText("t_m6tag", d.m6tag); setText("t_m6t", d.m6t); setText("t_m6d", d.m6d);
-
-        setText("t_subTitle", d.subTitle);
-        setText("t_subSub", d.subSub);
-        setText("t_subA", d.subA);
-        setText("t_sa1", d.sa1); setText("t_sa1d", d.sa1d);
-        setText("t_sa2", d.sa2); setText("t_sa2d", d.sa2d);
-        setText("t_sa3", d.sa3); setText("t_sa3d", d.sa3d);
-
-        setText("t_subB", d.subB);
-        setText("t_sb1", d.sb1); setText("t_sb1d", d.sb1d);
-        setText("t_sb2", d.sb2); setText("t_sb2d", d.sb2d);
-        setText("t_sb3", d.sb3); setText("t_sb3d", d.sb3d);
-
-        setText("t_contactTitle", d.contactTitle);
-        setText("t_emailLabel", d.emailLabel);
-        setText("t_footerNote", d.footerNote);
-        setText("t_copyEmail", d.copyEmail);
-        setText("t_backTop", d.backTop);
-
-        document.documentElement.lang = use;
-        document.documentElement.dir = (use === "ar") ? "rtl" : "ltr";
-
-        document.querySelectorAll(".langBtn").forEach(btn=>{
-          btn.classList.toggle("active", btn.dataset.lang === use);
-        });
-
-        localStorage.setItem("phk_holdings_lang", use);
-      }
-
-      async function copyToClipboard(text){
-        try{
-          await navigator.clipboard.writeText(text);
-          return true;
-        }catch(e){
-          const ta = document.createElement("textarea");
-          ta.value = text;
-          ta.style.position="fixed";
-          ta.style.left="-9999px";
-          document.body.appendChild(ta);
-          ta.select();
-          try{
-            document.execCommand("copy");
-            document.body.removeChild(ta);
-            return true;
-          }catch(err){
-            document.body.removeChild(ta);
-            return false;
-          }
-        }
-      }
-
-      const saved = localStorage.getItem("phk_holdings_lang") || detectLang();
-      applyLang(saved);
-
-      document.querySelectorAll(".langBtn").forEach(btn=>{
-        btn.addEventListener("click", ()=>{
-          const use = btn.dataset.lang;
-          applyLang(use);
-          const d = T[use] || T.en;
-          showToast(d.status);
-        });
-      });
-
-      document.getElementById("copyEmailBtn").addEventListener("click", async ()=>{
-        const use = document.documentElement.lang || "en";
-        const d = T[use] || T.en;
-        const ok = await copyToClipboard(EMAIL);
-        showToast(ok ? `${d.toastCopied}: ${EMAIL}` : d.toastCopyFail);
-      });
-    })();
-  </script>
 </body>
 </html>
